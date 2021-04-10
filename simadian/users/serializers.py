@@ -33,6 +33,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
+        depth = 2
         fields = (
             'profile',
             'profile_pic',

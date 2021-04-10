@@ -9,7 +9,10 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import mixins
 from .models import Profile
+from django.http import Http404
+from rest_framework import status
 
+User = get_user_model()
 
 class UsersListApiView(generics.GenericAPIView,
                        mixins.ListModelMixin):
@@ -33,29 +36,32 @@ class UserCreateApiView(generics.CreateAPIView):
     '''
     serializer_class = UserSerializer
 
-class ProfileRetrieveUpdateDeleteApiView(generics.GenericAPIView,
-            mixins.RetrieveModelMixin,
-            mixins.UpdateModelMixin,
-            mixins.DestroyModelMixin):  
+class ProfileRetrieveUpdateDeleteApiView(APIView):  
     '''
     Create Users Profile
     '''
-    queryset = get_user_model().objects.all()
-    serializer_class = ProfileSerializer
-    lookup_field = 'profile'
-    url_kwarg = 'profile'
+    permission_classes = [IsAuthenticated]
+  
+    def get(self, request, format=None):
+        try:
+            profile = Profile.objects.get(profile=request.user)
+            serializers = ProfileSerializer(profile)
+            print(serializers)
+            return Response(serializers.data)
+        except Profile.DoesNotExist:
+            raise Http404
+  
+    def put(self, request, format=None):
+        try:
+            profile = Profile.objects.get(profile=request.user)
+            serializers = ProfileSerializer(profile, data=request.data, partial=True)
+            if serializers.is_valid():
+                serializers.save()
+                return Response(serializers.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Profile.DoesNotExist:
+            raise Http404
 
-    def get(self, request, *args, **kwargs):
-        # Retrieve the user with given username
-        return self.retrieve(request, *args, **kwargs)
-    
-    def put(self, request, *args, **kwargs):
-        # Update the user with given username
-        return self.update(request, *args, **kwargs)
-    
-    def delete(self, request, *args, **kwargs):
-        # Delete the user with given username
-        return self.destroy(request, *args, **kwargs)
     
 
 class UserRetrieveUpdateDeleteApiView(
@@ -70,7 +76,7 @@ class UserRetrieveUpdateDeleteApiView(
     serializer_class = UserSerializer
     lookup_field = 'username'
     url_kwarg = 'username'
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         # Retrieve the user with given username
