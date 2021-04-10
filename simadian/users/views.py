@@ -46,7 +46,6 @@ class ProfileRetrieveUpdateDeleteApiView(APIView):
         try:
             profile = Profile.objects.get(profile=request.user)
             serializers = ProfileSerializer(profile)
-            print(serializers)
             return Response(serializers.data)
         except Profile.DoesNotExist:
             raise Http404
@@ -64,28 +63,37 @@ class ProfileRetrieveUpdateDeleteApiView(APIView):
 
     
 
-class UserRetrieveUpdateDeleteApiView(
-            generics.GenericAPIView,
-            mixins.RetrieveModelMixin,
-            mixins.UpdateModelMixin,
-            mixins.DestroyModelMixin):
+class UserRetrieveUpdateDeleteApiView(APIView):
     '''
     CRUD on user model
     '''
-    queryset = get_user_model().objects.all()
-    serializer_class = UserSerializer
-    lookup_field = 'username'
-    url_kwarg = 'username'
     permission_classes = [IsAuthenticated]
+  
+    def get(self, request, format=None):
+        try:
+            user = request.user
+            serializers = UserSerializer(user)
+            return Response(serializers.data)
+        except Profile.DoesNotExist:
+            raise Http404
+  
+    def put(self, request, format=None):
+        try:
+            user = request.user
+            serializers = UserSerializer(user, data=request.data, partial=True)
+            if serializers.is_valid():
+                serializers.save()
+                return Response(serializers.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Profile.DoesNotExist:
+            raise Http404
 
-    def get(self, request, *args, **kwargs):
-        # Retrieve the user with given username
-        return self.retrieve(request, *args, **kwargs)
-    
-    def put(self, request, *args, **kwargs):
-        # Update the user with given username
-        return self.update(request, *args, **kwargs)
-    
-    def delete(self, request, *args, **kwargs):
-        # Delete the user with given username
-        return self.destroy(request, *args, **kwargs)
+    def delete(self, request, format=None):
+        try:
+            profile = request.user
+            user = request.user
+            serializers = UserSerializer(user)
+            profile.delete()
+            return Response(serializers.data)
+        except Profile.DoesNotExist:
+            raise Http404
