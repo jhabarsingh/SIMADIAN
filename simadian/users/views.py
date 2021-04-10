@@ -31,6 +31,19 @@ class UserCreateApiView(generics.CreateAPIView):
     Create Users account
     '''
     serializer_class = UserSerializer
+
+class ProfileUpdateApiView(generics.UpdateAPIView):
+    '''
+    Create Users Profile
+    '''
+    queryset = get_user_model().objects.all()
+    serializer_class = ProfileSerializer
+    lookup_field = 'username'
+    url_kwarg = 'username'
+
+    def put(self, request, *args, **kwargs):
+        # Update the user Profile with given username
+        return self.update(request, *args, **kwargs)
     
 
 class UserRetrieveUpdateDeleteApiView(

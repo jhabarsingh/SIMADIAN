@@ -1,5 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from .serializers import UserSerializer, ProfileSerializer
+from .serializers import SellerSerializer, BuyerSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
