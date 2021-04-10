@@ -17,12 +17,12 @@ class Item(models.Model):
 	thumbnail1 = models.ImageField(upload_to='thumbnail',default='default.jpg')
 	thumbnail2 = models.ImageField(upload_to='thumbnail',default='default.jpg')
 	sold = models.BooleanField(default=False)
+	mobile_no = models.CharField(max_length=225)
 	country = models.CharField(max_length=225)
 	state = models.CharField(max_length=225)
 	city = models.CharField(max_length=225)
-	mobile_no = models.CharField(max_length=225)
 	landmark = models.TextField()
-	Category = models.CharField(max_length=225)
+	category = models.CharField(max_length=225)
 
 	def save(self, *args, **kwargs):
 		"""
