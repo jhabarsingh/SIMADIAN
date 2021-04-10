@@ -5,6 +5,9 @@ from io import BytesIO
 
 User = get_user_model()
 
+class Category(models.Model):
+	category = models.CharField(max_length=255)
+
 
 class Item(models.Model):
 	'''
@@ -17,12 +20,12 @@ class Item(models.Model):
 	thumbnail1 = models.ImageField(upload_to='thumbnail',default='default.jpg')
 	thumbnail2 = models.ImageField(upload_to='thumbnail',default='default.jpg')
 	sold = models.BooleanField(default=False)
-	mobile_no = models.CharField(max_length=225)
+	mobile_no = models.CharField(max_length=225, blank=True, null=True)
 	country = models.CharField(max_length=225)
 	state = models.CharField(max_length=225)
 	city = models.CharField(max_length=225)
 	landmark = models.TextField()
-	category = models.CharField(max_length=225)
+	category = models.ManyToManyField(Category)
 
 	def save(self, *args, **kwargs):
 		"""
