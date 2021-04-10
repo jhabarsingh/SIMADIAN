@@ -34,5 +34,6 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-            'profile_pics'
+            'profile',
+            'profile_pic',
         )

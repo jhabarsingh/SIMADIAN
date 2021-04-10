@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import mixins
+from .models import Profile
 
 
 class UsersListApiView(generics.GenericAPIView,
@@ -32,18 +33,29 @@ class UserCreateApiView(generics.CreateAPIView):
     '''
     serializer_class = UserSerializer
 
-class ProfileUpdateApiView(generics.UpdateAPIView):
+class ProfileRetrieveUpdateDeleteApiView(generics.GenericAPIView,
+            mixins.RetrieveModelMixin,
+            mixins.UpdateModelMixin,
+            mixins.DestroyModelMixin):  
     '''
     Create Users Profile
     '''
     queryset = get_user_model().objects.all()
     serializer_class = ProfileSerializer
-    lookup_field = 'username'
-    url_kwarg = 'username'
+    lookup_field = 'profile'
+    url_kwarg = 'profile'
 
+    def get(self, request, *args, **kwargs):
+        # Retrieve the user with given username
+        return self.retrieve(request, *args, **kwargs)
+    
     def put(self, request, *args, **kwargs):
-        # Update the user Profile with given username
+        # Update the user with given username
         return self.update(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        # Delete the user with given username
+        return self.destroy(request, *args, **kwargs)
     
 
 class UserRetrieveUpdateDeleteApiView(
