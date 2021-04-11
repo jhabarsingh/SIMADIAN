@@ -83,10 +83,10 @@ if DEBUG == False:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME','name'),
-            'USER': os.environ.get('DB_USER','user'),
+            'NAME': os.environ.get('DB_NAME','oobkjigy'),
+            'USER': os.environ.get('DB_USER','oobkjigy'),
             'PASSWORD': os.environ.get('DB_PASSWORD',
-                                        'password'),
+                                        'MHRKKRKt6Kg4SyCjNgQgAxMVdFXCaUqy'),
             'HOST' : os.environ.get('DB_HOST','queenie.db.elephantsql.com'),
             'PORT': '5432'
         }
