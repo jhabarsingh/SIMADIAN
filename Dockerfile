@@ -28,7 +28,7 @@ RUN pip install -r requirements.txt
 COPY . /code
 
 # collect static files
-RUN python simadian/manage.py collectstatic --noinput
+#RUN python simadian/manage.py collectstatic --noinput
 
 # add and run as non-root user
 RUN adduser -D myuser

@@ -59,7 +59,7 @@ class ProfileRetrieveUpdateDeleteApiView(APIView):
             if serializers.is_valid():
                 serializers.save()
                 return Response(serializers.data)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
         except Profile.DoesNotExist:
             raise Http404
 
@@ -86,7 +86,7 @@ class UserRetrieveUpdateDeleteApiView(APIView):
             if serializers.is_valid():
                 serializers.save()
                 return Response(serializers.data)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
         except Profile.DoesNotExist:
             raise Http404
 

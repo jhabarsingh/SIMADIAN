@@ -118,3 +118,9 @@ class Profile(models.Model):
             self.profile_pic= InMemoryUploadedFile(output,'ImageField', "%s.jpg"\
                 %self.profile_pic.name, 'profile_pic/jpeg', output.__sizeof__(), None)
         super(Profile, self).save(*args, **kwargs)
+
+
+@receiver(post_save, sender=MyUser)
+def create_profile(sender, instance, **kwargs):
+    profile = Profile(profile=instance)
+    profile.save()
