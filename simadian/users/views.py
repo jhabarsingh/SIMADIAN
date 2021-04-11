@@ -24,6 +24,7 @@ class UsersListApiView(generics.GenericAPIView,
     serializer_class = UserSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['first_name', 'email', 'username']
+    authentication_classes = []
 
     def get(self, request, *args, **kwargs):
         # List out the user with given username
@@ -35,6 +36,7 @@ class UserCreateApiView(generics.CreateAPIView):
     Create Users account
     '''
     serializer_class = UserSerializer
+    authentication_classes = []
 
 class ProfileRetrieveUpdateDeleteApiView(APIView):  
     '''

@@ -25,17 +25,28 @@ class ItemListApiView(generics.GenericAPIView,
     serializer_class = ItemSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category', 'name', 'sold', 'country', 'city', 'state', 'landmark']
+    authentication_classes = []
 
     def get(self, request, *args, **kwargs):
         # List out the Item with given filter fields
         return self.list(request, *args, **kwargs)
 
 
-class ItemCreateApiView(generics.CreateAPIView):
+class CategoryListApiView(generics.GenericAPIView,
+                       mixins.ListModelMixin):
     '''
-    Create Item account
+    Return all the category avaialble 
     '''
-    serializer_class = ItemSerializer
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category']
+    authentication_classes = []
+    pagination_class = None
+
+    def get(self, request, *args, **kwargs):
+        # List out the Item with given filter fields
+        return self.list(request, *args, **kwargs)
 
 
 class CategoryCreateApiView(generics.CreateAPIView):
@@ -43,6 +54,25 @@ class CategoryCreateApiView(generics.CreateAPIView):
     Create Item account
     '''
     serializer_class = CategorySerializer
+
+
+class ItemCreateApiView(APIView):
+    '''
+    Create Item account
+    '''
+
+    def post(self, request):
+    	# try:
+    	user = request.user
+    	print(request.data)
+    	serializers = ItemSerializer(data=request.data, partial=True)
+    	serializers.initial_data["seller"] = user.pk
+    	if serializers.is_valid():
+    		serializers.save()
+    		return Response(serializers.data)
+    	return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    	# except:
+    		# raise Http404
 
 
 class ItemUpdateDeleteApiView(APIView):
@@ -53,14 +83,15 @@ class ItemUpdateDeleteApiView(APIView):
   
     def put(self, request, format=None):
         try:
-            user = request.user
-            serializers = UserSerializer(buyer=user, data=request.data, partial=True)
+            id = request.data.get("id")
+            item = Item.objects.get(pk=id)
+            serializers = ItemSerializer(item, data=request.data, partial=True)
             if serializers.is_valid():
                 serializers.save()
                 return Response(serializers.data)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except Profile.DoesNotExist:
-            raise Http404
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+        except:
+        	raise Http404
 
     def delete(self, request, format=None):
         try:
@@ -69,31 +100,21 @@ class ItemUpdateDeleteApiView(APIView):
             serializers = ItemSerializer(item)
             item.delete()
             return Response(serializers.data)
-        except Profile.DoesNotExist:
-            raise Http404
+        except:
+        	raise Http404
 
-class CategoryUpdateApiView(APIView):
+class CategoryDeleteApiView(APIView):
     '''
     CRUD on Item model
     '''
     permission_classes = [IsAuthenticated]
   
-    def put(self, request, format=None):
-        try:
-            serializers = CategorySerializer(data=request.data)
-            if serializers.is_valid():
-                serializers.save()
-                return Response(serializers.data)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except Profile.DoesNotExist:
-            raise Http404
-
     def delete(self, request, format=None):
         try:
-            id = request.data.get("id")
+            id = request.data.get("category")
             category = Category.objects.get(pk=id)
-            serializers = Category(category)
+            serializers = CategorySerializer(Category.objects.get(pk=id))
             category.delete()
             return Response(serializers.data)
-        except Profile.DoesNotExist:
-            raise Http404
+        except:
+        	raise Http404
