@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django_filters',
     'users',
     'commerce',
-    # 'storages'
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -204,13 +204,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    BASE_DIR / 'staticfiles'
 ]
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 # MEDIA_URL = '/media/'
@@ -230,14 +230,20 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # AWS
 
-# AWS_ACCESS_KEY_ID = 'AKIATEO5GSFSFSYFFRK6'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'pollingwebsite'
-# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-# AWS_S3_OBJECT_PARAMETERS = {
-#     'CacheControl': 'max-age=86400',
-# }
-# AWS_LOCATION = 'static'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_PRELOAD_METADATA = True
 
-# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_LOCATION = 'staticfiles'
+
+DEFAULT_FILE_STORAGE = 'simadian.storage_backends.MediaStorage'
+
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
