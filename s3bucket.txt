@@ -25,3 +25,24 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 </CORSConfiguration>
 '''
 
+[
+    {
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "GET",
+            "HEAD",
+            "POST",
+            "PUT",
+            "DELETE"
+        ],
+        "AllowedOrigins": [
+            "*"
+        ],
+        "ExposeHeaders": [
+            "Etag"
+        ]
+    }
+]
+
