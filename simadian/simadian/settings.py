@@ -25,10 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=*!&5w)=*czee)2^szn8j5*1z&emq9k6buvr94vk%96_gd@=)2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-REMOTE = False
+DEBUG = False
+REMOTE = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jhabarsinghbhati.me']
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jhabarsinghbhati.me']
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,11 +90,11 @@ if REMOTE == True:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME','oobkjigy'),
-            'USER': os.environ.get('DB_USER','oobkjigy'),
+            'NAME': os.environ.get('DB_NAME','simadian'),
+            'USER': os.environ.get('DB_USER','postgres'),
             'PASSWORD': os.environ.get('DB_PASSWORD',
-                                        'MHRKKRKt6Kg4SyCjNgQgAxMVdFXCaUqy'),
-            'HOST' : os.environ.get('DB_HOST','queenie.db.elephantsql.com'),
+                                        ''),
+            'HOST' : os.environ.get('DB_HOST','database-1.ces2bla6aet2.us-east-2.rds.amazonaws.com'),
             'PORT': '5432'
         }
     }
