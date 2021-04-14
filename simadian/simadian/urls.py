@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('items/', include('commerce.urls')),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),

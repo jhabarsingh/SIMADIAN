@@ -25,7 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=*!&5w)=*czee)2^szn8j5*1z&emq9k6buvr94vk%96_gd@=)2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get("DEBUG", True)
+
+if(DEBUG != True):
+    DEBUG = False
+    
 REMOTE = True
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jhabarsinghbhati.me']
@@ -47,12 +51,14 @@ INSTALLED_APPS = [
     'django_filters',
     'users',
     'commerce',
-    'storages'
+    'storages',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,7 +98,7 @@ if REMOTE == True:
             'NAME': os.environ.get('DB_NAME','simadian'),
             'USER': os.environ.get('DB_USER','postgres'),
             'PASSWORD': os.environ.get('DB_PASSWORD',
-                                        ''),
+                                        '9592864914'),
             'HOST' : os.environ.get('DB_HOST','database-1.ces2bla6aet2.us-east-2.rds.amazonaws.com'),
             'PORT': '5432'
         }
@@ -205,13 +211,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'staticfiles'
+    BASE_DIR / 'static'
 ]
 
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 # MEDIA_URL = '/media/'
@@ -231,9 +237,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # AWS
 
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY = ''
-AWS_STORAGE_BUCKET_NAME = ''
+AWS_ACCESS_KEY_ID = 'AKIA2SR3A3ZOZVJPPCWN'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'simadian'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
@@ -248,3 +254,4 @@ DEFAULT_FILE_STORAGE = 'simadian.storage_backends.MediaStorage'
 
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# LOGIN_URL = '/admin/'
