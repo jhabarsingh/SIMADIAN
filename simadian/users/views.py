@@ -20,10 +20,12 @@ class UsersListApiView(generics.GenericAPIView,
     Return all the users avaialble if  their account
     filters are available
     '''
-    queryset = get_user_model().objects.all()
+    queryset = get_user_model().objects.all().order_by('username')
     serializer_class = UserSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['first_name', 'email', 'username']
+    ordering = ['username']
+    paginate_by = 20
     authentication_classes = []
 
     def get(self, request, *args, **kwargs):
