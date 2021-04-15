@@ -83,6 +83,7 @@ sudo nginx -t
 
 
 13. restart NGINX server
+sudo fuser -k 80/tcp
 sudo service nginx restart
 
 
