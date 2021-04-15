@@ -248,7 +248,7 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 AWS_PRELOAD_METADATA = True
 
-AWS_LOCATION = 'staticfiles'
+AWS_LOCATION = 'static'
 
 DEFAULT_FILE_STORAGE = 'simadian.storage_backends.MediaStorage'
 
