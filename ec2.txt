@@ -90,3 +90,8 @@ sudo service nginx restart
 
 14: Open the browser:
 
+
+RESTART SERVER
+sudo supervisorctl reload
+sudo service nginx restart
+
