@@ -4,3 +4,20 @@ For those who are getting this error: "... Connection timed out (0x0000274C/1006
 - Click the item "default" Security group
 - Click "Actions" > "Edit inbound rules" > "Add rule"
 - Select... Type: "All traffic", Source: "My IP", then click "Save rules"
+
+
+Configure the RDS DB instance's security groups
+Open the Amazon RDS console, and choose Databases from the navigation pane.
+Choose the name of the RDS DB instance. Or create an RDS DB instance, if you don't already have one.
+Choose the Connectivity & security tab.
+From the Security section, choose the link under VPC security groups.
+Select the security group, choose Actions, and choose Edit inbound rules.
+Choose Add rule and enter the following:
+Type: Custom TCP Rule
+Protocol: TCP
+Port Range: Enter the port of your RDS DB instance
+Source: Enter the private IP address of your EC2 instance
+Choose Save.
+This configuration for the security group allows traffic from the EC2 instance's private IP address. If the EC2 instance and the RDS DB instance use the same VPC, then you don't need to modify the route table that is used by the RDS DB instance. If the VPC is different, then create a VPC peering connection to allow connections between those VPCs.
+
+
