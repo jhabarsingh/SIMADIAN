@@ -56,3 +56,10 @@ class Item(models.Model):
 				%self.thumbnail2.name, 'thumbnail/jpeg', output.__sizeof__(), None)
 		super(Item, self).save(*args, **kwargs)
 
+
+class Messages(models.Model):
+	'''
+	Inbox messages
+	'''
+	sender = models.ForeignKey(User, on_delete=models.SET_NULL)
+	receiver = models.ForeignKey(User, on_delete=models.SET_NULL)
