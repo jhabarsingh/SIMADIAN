@@ -1,6 +1,0 @@
-For those who are getting this error: "... Connection timed out (0x0000274C/10060)", these are what I did to solve the problem:
-
-- Go to "Security group rules" (under "Connectivity & security")
-- Click the item "default" Security group
-- Click "Actions" > "Edit inbound rules" > "Add rule"
-- Select... Type: "All traffic", Source: "My IP", then click "Save rules"

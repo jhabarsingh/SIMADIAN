@@ -1,5 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from .serializers import ItemSerializer, CategorySerializer
+from .serializers import ItemSerializer, CategorySerializer, MessageSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.contrib.auth import get_user_model
@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import mixins
-from .models import Item, Category
+from .models import Item, Category, Messages
 from django.http import Http404
 from rest_framework import status
 
@@ -62,17 +62,17 @@ class ItemCreateApiView(APIView):
     '''
 
     def post(self, request):
-    	# try:
-    	user = request.user
-    	print(request.data)
-    	serializers = ItemSerializer(data=request.data, partial=True)
-    	serializers.initial_data["seller"] = user.pk
-    	if serializers.is_valid():
-    		serializers.save()
-    		return Response(serializers.data)
-    	return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-    	# except:
-    		# raise Http404
+    	try:
+        	user = request.user
+        	print(request.data)
+        	serializers = ItemSerializer(data=request.data, partial=True)
+        	serializers.initial_data["seller"] = user.pk
+        	if serializers.is_valid():
+        		serializers.save()
+        		return Response(serializers.data)
+        	return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    	except:
+    		raise Http404
 
 
 class ItemUpdateDeleteApiView(APIView):
@@ -118,3 +118,83 @@ class CategoryDeleteApiView(APIView):
             return Response(serializers.data)
         except:
         	raise Http404
+
+class MessageCreateApiView(APIView):
+    '''
+    Create Messages account
+    '''
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            sender = request.user
+            receiver = User.objects.get(username=request.data.get("receiver"))
+            content = request.data.get("content")
+
+            if receiver == sender:
+                return Response({
+                    'message': 'can\'t message yourself'
+                })
+            message = Messages(sender=sender, receiver=receiver, content=content)
+            try:
+                message.save()
+                return Response(request.data)
+            except:
+                pass
+            return Response({"message": "bad request"}, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            raise Http404
+
+class MessagesSentApiView(APIView):
+    '''
+    List Messages sent
+    '''
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            sender = request.user
+            messages = Messages.objects.all().filter(sender=sender)
+
+            serializer = MessageSerializer(messages, many=True)
+            return Response(serializer.data)
+        except:
+            raise Http404
+
+class MessagesReceivedApiView(APIView):
+    '''
+    List Messages sent
+    '''
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            receiver = request.user
+            messages = Messages.objects.all().filter(receiver=receiver)
+
+            serializer = MessageSerializer(messages, many=True)
+            return Response(serializer.data)
+        except:
+            raise Http404
+
+
+class MessageDeleteApiView(APIView):
+    '''
+    CRUD on Messages model
+    '''
+    permission_classes = [IsAuthenticated]
+  
+    def delete(self, request, format=None):
+        try:
+            id = request.data.get("message_id")
+            category = Messages.objects.get(pk=id)
+            serializers = MessageSerializer(category)
+            if(category):
+                if(category.sender == request.user):
+                    category.delete()
+            
+                    return Response(serializers.data)
+            
+            return Response({'message': 'unauthorized'})
+        except:
+            raise Http404

@@ -25,7 +25,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=*!&5w)=*czee)2^szn8j5*1z&emq9k6buvr94vk%96_gd@=)2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+<<<<<<< HEAD
 DEBUG = True
+=======
+DEBUG = os.environ.get("DEBUG", True)
+
+if(DEBUG != True):
+    DEBUG = False
+    
+>>>>>>> 032fd996c0d6e0eee9bceffb0939828b46259a4c
 REMOTE = True
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jhabarsinghbhati.me']
@@ -47,12 +55,14 @@ INSTALLED_APPS = [
     'django_filters',
     'users',
     'commerce',
-    'storages'
+    'storages',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -211,7 +221,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
@@ -242,9 +252,10 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 AWS_PRELOAD_METADATA = True
 
-AWS_LOCATION = 'staticfiles'
+AWS_LOCATION = 'static'
 
 DEFAULT_FILE_STORAGE = 'simadian.storage_backends.MediaStorage'
 
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# LOGIN_URL = '/admin/'

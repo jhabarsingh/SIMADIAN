@@ -25,6 +25,10 @@ class UsersListApiView(generics.GenericAPIView,
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['first_name', 'email', 'username']
     ordering = ['username']
+<<<<<<< HEAD
+=======
+    paginate_by = 20
+>>>>>>> 032fd996c0d6e0eee9bceffb0939828b46259a4c
     authentication_classes = []
 
     def get(self, request, *args, **kwargs):

@@ -56,3 +56,11 @@ class Item(models.Model):
 				%self.thumbnail2.name, 'thumbnail/jpeg', output.__sizeof__(), None)
 		super(Item, self).save(*args, **kwargs)
 
+
+class Messages(models.Model):
+	'''
+	Inbox messages
+	'''
+	sender = models.ForeignKey(User, related_name="senders", on_delete=models.DO_NOTHING)
+	receiver = models.ForeignKey(User, related_name="receivers", on_delete=models.DO_NOTHING)
+	content = models.TextField()

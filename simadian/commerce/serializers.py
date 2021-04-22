@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Item, Category
+from .models import Item, Category, Messages
 
 
 class ItemSerializer(serializers.ModelSerializer):
@@ -30,3 +30,15 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = "__all__"
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Messages
+        depth = 3
+        fields = (
+            'id',
+            'sender',
+            'receiver',
+            'content'
+        )
