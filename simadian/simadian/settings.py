@@ -30,11 +30,11 @@ DEBUG = os.environ.get("DEBUG", True)
 if(DEBUG != True):
     DEBUG = False
     
-REMOTE = False
+REMOTE = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jhabarsinghbhati.me']
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jhabarsinghbhati.me']
 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -233,7 +233,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 #     "http://localhost:8080"
 # ]
 
-# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 # AWS
 
