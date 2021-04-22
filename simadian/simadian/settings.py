@@ -28,6 +28,8 @@ SECRET_KEY = 'django-insecure-=*!&5w)=*czee)2^szn8j5*1z&emq9k6buvr94vk%96_gd@=)2
 
 DEBUG = os.environ.get("DEBUG", True)
 
+DEBUG = True
+
 if(DEBUG != True):
     DEBUG = False
     
