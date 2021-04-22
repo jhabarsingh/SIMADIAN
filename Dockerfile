@@ -34,10 +34,5 @@ COPY . /code
 RUN adduser -D myuser
 USER myuser
 
-<<<<<<< HEAD
 run apk add gunicorn
 CMD gunicorn simadian/simadian.wsgi:application --bind 0.0.0.0:8000
-=======
-#RUN gunicorn
-#CMD gunicorn hello_django.wsgi:application --bind 0.0.0.0:$PORT
->>>>>>> 032fd996c0d6e0eee9bceffb0939828b46259a4c
