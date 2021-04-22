@@ -61,5 +61,6 @@ class Messages(models.Model):
 	'''
 	Inbox messages
 	'''
-	sender = models.ForeignKey(User, on_delete=models.SET_NULL)
-	receiver = models.ForeignKey(User, on_delete=models.SET_NULL)
+	sender = models.ForeignKey(User, related_name="senders", on_delete=models.DO_NOTHING)
+	receiver = models.ForeignKey(User, related_name="receivers", on_delete=models.DO_NOTHING)
+	content = models.TextField()
