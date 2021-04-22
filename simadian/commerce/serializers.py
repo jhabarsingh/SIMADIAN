@@ -36,4 +36,9 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Messages
         depth = 3
-        fields = "__all__"
+        fields = (
+            'id',
+            'sender',
+            'receiver',
+            'content'
+        )
