@@ -59,22 +59,24 @@ cd SIMADIAN
 sudo docker-compose up
 ```
 
-## [React Native Expo Setup](https://dev.to/runosaduwa/how-to-install-react-native-with-expo-quick-easy-4j8j)
+## [Vuejs Setup](https://dev.to/runosaduwa/how-to-install-react-native-with-expo-quick-easy-4j8j)
 
-<p align="center" >
+<!-- <p align="center" >
   
   [![Watch the video](https://github.com/jhabarsingh/SIMADIAN/blob/main/app/assets/thumbnail.jpg?raw=true)](https://www.youtube.com/watch?v=IRgjNln4s20)
   <i><b align="center">Click On The Above Image To Watch Demo</b></i>
 
-</p>
+</p> -->
 
-[Install node](https://www.geeksforgeeks.org/installation-of-node-js-on-linux/) | [Install React Native](https://code.likeagirl.io/say-hello-world-using-react-native-in-linux-15955986bc44)
-```
-git clone https://github.com/jhabarsingh/SIMADIAN.git
-cd SIMADIAN/app
-npm install
-expo start
-```
+[Install node](https://nodejs.org/en/download/) |
+[Install vue/cli](https://cli.vuejs.org/)
+```bash
+ git clone https://github.com/jhabarsingh/SIMADIAN.git
+ cd SIMADIAN
+ npm install   # Nodejs should be installed
+ npm run start # Vuejs should be installed
+ ```
+ 
 
 ## Install App On Mobile Using APK File
   1. Click to The [**Link**](https://github.com/jhabarsingh/SIMADIAN/blob/main/apk/app-release.apk)
