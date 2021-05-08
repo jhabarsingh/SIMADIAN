@@ -73,7 +73,7 @@ cd SIMADIAN
 sudo docker-compose up
 ```
 
-## [Vuejs Setup](https://dev.to/runosaduwa/how-to-install-react-native-with-expo-quick-easy-4j8j)
+## Vuejs Setup
 
 <!-- <p align="center" >
   
