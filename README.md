@@ -8,8 +8,10 @@
   <br/>
   <div style="display:flex;justify-content:space-around">
   <img  title="Django" src="https://icon-library.com/images/django-icon/django-icon-0.jpg" width="50px" height="50px" style="margin-right:5px;" />
-  <img title="Heroku"  src="https://www.thedevcoach.co.uk/wp-content/uploads/2020/04/heroku.png" height="50px"  style="margin-right:5px;"/> 
-  <img  title="Play Store" src="https://images.indianexpress.com/2019/03/google-play-store-1200.jpg" height="50px" style="margin-right:5px;" />
+  es<img titlt="Vuejs"   src="https://vuejs.org/images/logo.png" width="50px" height="50px"  style="margin-right:5px;"/>
+  <img  title="Vuex" src="https://s3.amazonaws.com/coursetro/posts/144-full.png"  height="50px" style="margin-right:5px;"     />
+  <img  title="Vuetify" src="https://cdn.worldvectorlogo.com/logos/vuetify.svg" height="50px"  style="margin-right:5px;"/>
+  <img title="Netlify" src="https://www.netlify.com/img/press/logos/logomark.png" height="50px" style="margin-right:5px;" />
   <img  title="Docker" src="https://pbs.twimg.com/profile_images/1273307847103635465/lfVWBmiW_400x400.png" height="50px" style="margin-right:5px;" />
 </div>
 </details>
@@ -76,13 +78,6 @@ sudo docker-compose up
  npm install   # Nodejs should be installed
  npm run start # Vuejs should be installed
  ```
- 
-
-## Install App On Mobile Using APK File
-  1. Click to The [**Link**](https://github.com/jhabarsingh/SIMADIAN/blob/main/apk/app-release.apk)
-  2. Download the apk file 
-  3. Install it on your Mobile Device or Android Emulator
-
 
 
 # [Want To Contribute](https://medium.com/mindsdb/contributing-to-an-open-source-project-how-to-get-started-6ba812301738)
