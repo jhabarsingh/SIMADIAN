@@ -17,6 +17,16 @@
 </details>
 
 
+
+<details>
+  <summary>:zap: AWS SERVICES</summary>
+  <br/>
+  <div style="display:flex;justify-content:space-around">
+  <img  title="AWS EC2" src="https://i0.wp.com/www.sndkcorp.com/wp-content/uploads/2019/09/amazon-ec2.png?fit=360%2C230&ssl=1" height="70px" style="margin-right:5px;" />
+  <img titlt="AWS RDS"   src="https://p2zk82o7hr3yb6ge7gzxx4ki-wpengine.netdna-ssl.com/wp-content/uploads/Amazon-RDS-1.png" height="70px"  style="margin-right:5px;"/>
+  <img  title="AWS S3 Bucket" src="https://www.drupal.org/files/project-images/1_B9CIOrxdROHvtdmouQA1_A.png"  height="70px" style="margin-right:5px;"     />
+</div>
+
 ## About
   [SIMADIAN](http://ec2-18-224-181-83.us-east-2.compute.amazonaws.com/users/) is a Web app built using Django and Vuejs. It provides many functionalities:-
   1. Sell your stationaries
