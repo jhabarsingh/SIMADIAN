@@ -1,4 +1,4 @@
-# [SIMADIAN]()  ⚡️ [![GitHub](https://img.shields.io/github/license/jhabarsingh/SIMADIAN)](https://github.com/jhabarsingh/SIMADIAN/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/jhabarsingh/SIMADIAN)](https://github.com/jhabarsingh/SIMADIAN/stargazers)  [![GitHub contributors](https://img.shields.io/github/contributors/jhabarsingh/SIMADIAN.svg)](https://github.com/jhabarsingh/SIMADIAN/graphs/contributors)  [![GitHub issues](https://img.shields.io/github/issues/jhabarsingh/SIMADIAN.svg)](https://github.com/jhabarsingh/SIMADIAN/issues) [![GitHub forks](https://img.shields.io/github/forks/jhabarsingh/SIMADIAN.svg?style=social&label=Fork)](https://GitHub.com/jhabarsingh/SIMADIAN/network/)
+# [SIMADIAN](http://ec2-18-224-181-83.us-east-2.compute.amazonaws.com/users/)  ⚡️ [![GitHub](https://img.shields.io/github/license/jhabarsingh/SIMADIAN)](https://github.com/jhabarsingh/SIMADIAN/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/jhabarsingh/SIMADIAN)](https://github.com/jhabarsingh/SIMADIAN/stargazers)  [![GitHub contributors](https://img.shields.io/github/contributors/jhabarsingh/SIMADIAN.svg)](https://github.com/jhabarsingh/SIMADIAN/graphs/contributors)  [![GitHub issues](https://img.shields.io/github/issues/jhabarsingh/SIMADIAN.svg)](https://github.com/jhabarsingh/SIMADIAN/issues) [![GitHub forks](https://img.shields.io/github/forks/jhabarsingh/SIMADIAN.svg?style=social&label=Fork)](https://GitHub.com/jhabarsingh/SIMADIAN/network/)
 
 <p align="center">
   <img src="https://github.com/jhabarsingh/SIMADIAN/blob/main/doc/logo.png?raw=true" />
@@ -8,7 +8,7 @@
   <br/>
   <div style="display:flex;justify-content:space-around">
   <img  title="Django" src="https://icon-library.com/images/django-icon/django-icon-0.jpg" width="50px" height="50px" style="margin-right:5px;" />
-  es<img titlt="Vuejs"   src="https://vuejs.org/images/logo.png" width="50px" height="50px"  style="margin-right:5px;"/>
+  <img titlt="Vuejs"   src="https://vuejs.org/images/logo.png" width="50px" height="50px"  style="margin-right:5px;"/>
   <img  title="Vuex" src="https://s3.amazonaws.com/coursetro/posts/144-full.png"  height="50px" style="margin-right:5px;"     />
   <img  title="Vuetify" src="https://cdn.worldvectorlogo.com/logos/vuetify.svg" height="50px"  style="margin-right:5px;"/>
   <img title="Netlify" src="https://www.netlify.com/img/press/logos/logomark.png" height="50px" style="margin-right:5px;" />
@@ -18,13 +18,13 @@
 
 
 ## About
-  [SIMADIAN]() is a Web app built using Django and Vuejs. It provides many functionalities:-
+  [SIMADIAN](http://ec2-18-224-181-83.us-east-2.compute.amazonaws.com/users/) is a Web app built using Django and Vuejs. It provides many functionalities:-
   1. Sell your stationaries
   2. Upload the books, other stationary items.
   3. You can Buy the second hand stationaries.
 
   
-## [Django Api End Points](https://codechef-api.herokuapp.com/)
+## [Django Api End Points](http://ec2-18-224-181-83.us-east-2.compute.amazonaws.com/users/)
 ![Django Apis](https://github.com/jhabarsingh/SIMADIAN/blob/main/doc/api.png?raw=true)
 
 
