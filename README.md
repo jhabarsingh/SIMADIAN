@@ -1,7 +1,7 @@
 # [SIMADIAN]()  ⚡️ [![GitHub](https://img.shields.io/github/license/jhabarsingh/SIMADIAN)](https://github.com/jhabarsingh/SIMADIAN/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/jhabarsingh/SIMADIAN)](https://github.com/jhabarsingh/SIMADIAN/stargazers)  [![GitHub contributors](https://img.shields.io/github/contributors/jhabarsingh/SIMADIAN.svg)](https://github.com/jhabarsingh/SIMADIAN/graphs/contributors)  [![GitHub issues](https://img.shields.io/github/issues/jhabarsingh/SIMADIAN.svg)](https://github.com/jhabarsingh/SIMADIAN/issues) [![GitHub forks](https://img.shields.io/github/forks/jhabarsingh/SIMADIAN.svg?style=social&label=Fork)](https://GitHub.com/jhabarsingh/SIMADIAN/network/)
 
 <p align="center">
-  <img src="https://github.com/jhabarsingh/SIMADIAN/blob/main/app/assets/codechef.png?raw=true" />
+  <img src="https://github.com/jhabarsingh/SIMADIAN/blob/main/doc/logo.png?raw=true" />
 </p>
 <details>
   <summary>:zap: TECH STACK</summary>
@@ -9,8 +9,6 @@
   <div style="display:flex;justify-content:space-around">
   <img  title="Django" src="https://icon-library.com/images/django-icon/django-icon-0.jpg" width="50px" height="50px" style="margin-right:5px;" />
   <img title="Heroku"  src="https://www.thedevcoach.co.uk/wp-content/uploads/2020/04/heroku.png" height="50px"  style="margin-right:5px;"/> 
-  <img title="React Native" src="https://www.appcoda.com/wp-content/uploads/2015/04/react-native.png" height="50px"   style="margin-right:5px;"/>
-  <img  title="Beautiful Soup" src="https://funthon.files.wordpress.com/2017/05/bs.png" height="50px" style="margin-right:5px;" />
   <img  title="Play Store" src="https://images.indianexpress.com/2019/03/google-play-store-1200.jpg" height="50px" style="margin-right:5px;" />
   <img  title="Docker" src="https://pbs.twimg.com/profile_images/1273307847103635465/lfVWBmiW_400x400.png" height="50px" style="margin-right:5px;" />
 </div>
@@ -18,15 +16,14 @@
 
 
 ## About
-  [SIMADIAN]() is a Native Mobile app built using Django and React Native. It provides many functionalities:-
-  1. Track your **Progress** on **Codechef**
-  2. Track your **Friends Progress** on Codechef
-  3. Notifies about the **Latest Announcements** on codechef
-  4. Notifies about **all contests** (codechef as well as by other online JUDGES)
-  5. Notifies **codechef Upcoming** contests
+  [SIMADIAN]() is a Web app built using Django and Vuejs. It provides many functionalities:-
+  1. Sell your stationaries
+  2. Upload the books, other stationary items.
+  3. You can Buy the second hand stationaries.
+
   
 ## [Django Api End Points](https://codechef-api.herokuapp.com/)
-![Django Apis](https://github.com/jhabarsingh/SIMADIAN/blob/main/app/assets/apis.png?raw=true)
+![Django Apis](https://github.com/jhabarsingh/SIMADIAN/blob/main/doc/api.png?raw=true)
 
 
 ## Django Backend Setup
