@@ -5,7 +5,6 @@
     
     <v-card
     class="card"
-    :elevation="24"
     >
       
       <v-form
