@@ -22,8 +22,9 @@
         color="primary"
         dark
         rounded
+        @click="$router.push('/login')"
       >
-        Accept
+        Login
         <v-icon
           dark
           right
@@ -37,8 +38,9 @@
         color="warning"
         dark
         rounded
+        @click="$router.push('/register')"
       >
-        Accept
+        Sign Up
         <v-icon
           dark
           right
