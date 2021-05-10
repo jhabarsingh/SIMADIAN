@@ -76,12 +76,11 @@ sudo docker-compose up
 
 ## Vuejs Setup
 
-<!-- <p align="center" >
+<p align="center" >
   
-  [![Watch the video](https://github.com/jhabarsingh/SIMADIAN/blob/main/app/assets/thumbnail.jpg?raw=true)](https://www.youtube.com/watch?v=IRgjNln4s20)
-  <i><b align="center">Click On The Above Image To Watch Demo</b></i>
+  ![Watch the video](https://github.com/jhabarsingh/SIMADIAN/blob/main/doc/home.png?raw=true)
 
-</p> -->
+</p>
 
 [Install node](https://nodejs.org/en/download/) |
 [Install vue/cli](https://cli.vuejs.org/)
