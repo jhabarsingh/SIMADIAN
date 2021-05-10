@@ -31,6 +31,7 @@
             class="ma-2"
             color="primary"
             dark
+            @click="$router.push('/home')"
           >
             Home
             <v-icon
