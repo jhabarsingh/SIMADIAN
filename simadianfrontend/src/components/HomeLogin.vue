@@ -1,8 +1,8 @@
 <template>
   <v-app id="inspire">
-    <List :drawer="drawer" />
+    <List />
     <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="$store.state.drawer = !$store.state.drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>
         <v-tab>
@@ -69,6 +69,8 @@
       Item,
       Footer
     },
-    data: () => ({ drawer: null }),
+    data: () => ({
+      
+    }),
   }
 </script>

@@ -5,7 +5,7 @@
     tile
   >
     <v-navigation-drawer 
-        v-model="drawer"
+        v-model="$store.state.drawer"
         app
     >
       <v-system-bar></v-system-bar>
