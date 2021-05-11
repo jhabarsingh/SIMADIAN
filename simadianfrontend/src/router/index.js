@@ -31,9 +31,9 @@ const routes = [
     component: () => import('../components/items/ItemDetail.vue')
   },
   {
-    path: '/inbox',
-    name: 'Inbox',
-    component: () => import('../components/items/Inbox.vue')
+    path: '/sent',
+    name: 'Sent',
+    component: () => import('../components/items/Sent.vue')
   },
   {
     path: '/favourite',
@@ -41,9 +41,19 @@ const routes = [
     component: () => import('../components/items/Favourite.vue')
   },
   {
-    path: '/chats',
-    name: 'Chat',
-    component: () => import('../components/items/Chat.vue')
+    path: '/received',
+    name: 'Received',
+    component: () => import('../components/items/Received.vue')
+  },
+  {
+    path: '/message-detail',
+    name: 'MessageDetail',
+    component: () => import('../components/items/MessageDetail.vue')
+  },
+  {
+    path: '/write-message',
+    name: 'WriteMessage',
+    component: () => import('../components/items/WriteMessageCard.vue')
   },
   {
     path: '/logout',

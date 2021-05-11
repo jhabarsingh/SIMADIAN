@@ -33,6 +33,7 @@
           large
           right
           top
+          @click="$router.push('/write-message')"
         >
           <v-icon>mdi-message</v-icon>
         </v-btn>

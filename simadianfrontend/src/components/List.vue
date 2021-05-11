@@ -64,9 +64,8 @@
       items: [
         { text: 'Home', icon: 'mdi-home', route: 'home' },
         { text: 'Favourite ', icon: 'mdi-account-multiple', route: 'favourite' },
-        { text: 'Inbox', icon: 'mdi-star', route: 'inbox' },
-        { text: 'Recent Chat', icon: 'mdi-history', route: 'chats' },
-        { text: 'Near By', icon: 'mdi-check-circle', route: 'nearby' },
+        { text: 'Sent', icon: 'mdi-star', route: 'sent' },
+        { text: 'Received', icon: 'mdi-history', route: 'received' },
         { text: 'Search Filter', icon: 'mdi-cloud-upload', route: 'search-filter' },
         { text: 'Logout', icon: 'mdi-logout', route: 'logout' },
       ],
