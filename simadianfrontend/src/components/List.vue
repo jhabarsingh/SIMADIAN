@@ -40,6 +40,7 @@
           <v-list-item
             v-for="(item, i) in items"
             :key="i"
+            @click="$router.push(`/${item.route}`)"
           >
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
@@ -61,13 +62,13 @@
     data: () => ({
       selectedItem: 0,
       items: [
-        { text: 'Home', icon: 'mdi-home' },
-        { text: 'Shared ', icon: 'mdi-account-multiple' },
-        { text: 'Starred', icon: 'mdi-star' },
-        { text: 'Recent', icon: 'mdi-history' },
-        { text: 'Offline', icon: 'mdi-check-circle' },
-        { text: 'Uploads', icon: 'mdi-upload' },
-        { text: 'Backups', icon: 'mdi-cloud-upload' },
+        { text: 'Home', icon: 'mdi-home', route: 'home' },
+        { text: 'Favourite ', icon: 'mdi-account-multiple', route: 'favourite' },
+        { text: 'Inbox', icon: 'mdi-star', route: 'inbox' },
+        { text: 'Recent Chat', icon: 'mdi-history', route: 'recent-chat' },
+        { text: 'Near By', icon: 'mdi-check-circle', route: 'nearby' },
+        { text: 'Search Filter', icon: 'mdi-cloud-upload', route: 'search-filter' },
+        { text: 'Logout', icon: 'mdi-logout', route: 'logout' },
       ],
     }),
     props: [

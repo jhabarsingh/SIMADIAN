@@ -34,7 +34,7 @@
           right
           top
         >
-          <v-icon>mdi-cart</v-icon>
+          <v-icon>mdi-message</v-icon>
         </v-btn>
         <div class="font-weight-light grey--text title mb-2">
           For the perfect meal

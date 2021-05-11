@@ -62,6 +62,7 @@
   import List from './List';
   import Item from '../components/items/Items'
   import Footer from './Footer.vue';
+
   export default {
     components: {
       List,

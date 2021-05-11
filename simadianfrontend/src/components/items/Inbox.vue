@@ -2,101 +2,113 @@
   <v-card
     class="mx-auto"
     max-width="500"
-    style="margin-top: 10px;"
+    style="margin-top: 20px"
   >
     <v-toolbar
-      color="deep-purple accent-4"
+      color="pink"
       dark
     >
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title>New Chat</v-toolbar-title>
+      <v-toolbar-title>Inbox</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-checkbox-marked-circle</v-icon>
+      </v-btn>
     </v-toolbar>
 
-    <v-list subheader>
-      <v-subheader>Recent chat</v-subheader>
-
-      <v-list-item
-        v-for="chat in recent"
-        :key="chat.title"
+    <v-list two-line>
+      <v-list-item-group
+        v-model="selected"
+        active-class="pink--text"
+        multiple
       >
-        <v-list-item-avatar>
-          <v-img
-            :alt="`${chat.title} avatar`"
-            :src="chat.avatar"
-          ></v-img>
-        </v-list-item-avatar>
+        <template v-for="(item, index) in items">
+          <v-list-item :key="item.title">
+            <template v-slot:default="{ active }">
+              <v-list-item-content>
+                <v-list-item-title v-text="item.title"></v-list-item-title>
 
-        <v-list-item-content>
-          <v-list-item-title v-text="chat.title"></v-list-item-title>
-        </v-list-item-content>
+                <v-list-item-subtitle
+                  class="text--primary"
+                  v-text="item.headline"
+                ></v-list-item-subtitle>
 
-        <v-list-item-icon>
-          <v-icon :color="chat.active ? 'deep-purple accent-4' : 'grey'">
-            mdi-message-outline
-          </v-icon>
-        </v-list-item-icon>
-      </v-list-item>
-    </v-list>
+                <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+              </v-list-item-content>
 
-    <v-divider></v-divider>
+              <v-list-item-action>
+                <v-list-item-action-text v-text="item.action"></v-list-item-action-text>
 
-    <v-list subheader>
-      <v-subheader>Previous chats</v-subheader>
+                <v-icon
+                  v-if="!active"
+                  color="grey lighten-1"
+                >
+                  mdi-star-outline
+                </v-icon>
 
-      <v-list-item
-        v-for="chat in previous"
-        :key="chat.title"
-      >
-        <v-list-item-avatar>
-          <v-img
-            :alt="`${chat.title} avatar`"
-            :src="chat.avatar"
-          ></v-img>
-        </v-list-item-avatar>
+                <v-icon
+                  v-else
+                  color="yellow darken-3"
+                >
+                  mdi-star
+                </v-icon>
+              </v-list-item-action>
+            </template>
+          </v-list-item>
 
-        <v-list-item-content>
-          <v-list-item-title v-text="chat.title"></v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          <v-divider
+            v-if="index < items.length - 1"
+            :key="index"
+          ></v-divider>
+        </template>
+      </v-list-item-group>
     </v-list>
   </v-card>
 </template>
 
-
 <script>
   export default {
     data: () => ({
-      recent: [
+      selected: [2],
+      items: [
         {
-          active: true,
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-          title: 'Jason Oner',
-        },
-        {
-          active: true,
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-          title: 'Mike Carlson',
-        },
-        {
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-          title: 'Cindy Baker',
-        },
-        {
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
+          action: '15 min',
+          headline: 'Brunch this weekend?',
+          subtitle: `I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
           title: 'Ali Connors',
         },
+        {
+          action: '2 hr',
+          headline: 'Summer BBQ',
+          subtitle: `Wish I could come, but I'm out of town this weekend.`,
+          title: 'me, Scrott, Jennifer',
+        },
+        {
+          action: '6 hr',
+          headline: 'Oui oui',
+          subtitle: 'Do you have Paris recommendations? Have you ever been?',
+          title: 'Sandra Adams',
+        },
+        {
+          action: '12 hr',
+          headline: 'Birthday gift',
+          subtitle: 'Have any ideas about what we should get Heidi for her birthday?',
+          title: 'Trevor Hansen',
+        },
+        {
+          action: '18hr',
+          headline: 'Recipe to try',
+          subtitle: 'We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
+          title: 'Britta Holt',
+        },
       ],
-      previous: [{
-        title: 'Travis Howard',
-        avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
-      }],
     }),
   }
 </script>

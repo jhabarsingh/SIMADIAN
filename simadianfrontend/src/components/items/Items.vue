@@ -1,5 +1,6 @@
 <template>
   <v-container class="grey lighten-5">
+    <search-bar />
     <v-row no-gutters>
       <v-col
         v-for="n in 12"
@@ -18,10 +19,13 @@
 <script>
 import Card from './Card.vue'
 import Pagination from './Pagination.vue'
+import SearchBar from '../SearchBar.vue';
+
 export default {
     components: {
         Card,
-        Pagination
+        Pagination,
+        SearchBar
     },
     data: () => ({
         

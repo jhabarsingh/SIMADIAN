@@ -30,6 +30,21 @@ const routes = [
     name: 'Detail',
     component: () => import('../components/items/ItemDetail.vue')
   },
+  {
+    path: '/inbox',
+    name: 'Inbox',
+    component: () => import('../components/items/Inbox.vue')
+  },
+  {
+    path: '/favourite',
+    name: 'Favourite',
+    component: () => import('../components/items/Favourite.vue')
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: () => import('../components/Logout.vue')
+  },
 
 ]
 
