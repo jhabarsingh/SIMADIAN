@@ -41,6 +41,11 @@ const routes = [
     component: () => import('../components/items/Favourite.vue')
   },
   {
+    path: '/chats',
+    name: 'Chat',
+    component: () => import('../components/items/Chat.vue')
+  },
+  {
     path: '/logout',
     name: 'Logout',
     component: () => import('../components/Logout.vue')
