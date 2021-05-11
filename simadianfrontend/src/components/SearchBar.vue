@@ -4,7 +4,7 @@
     color="primary"
     style="margin-bottom:10px;"
   >
-    <v-toolbar-title>Town Selection</v-toolbar-title>
+    <v-toolbar-title>City Selection</v-toolbar-title>
     <v-autocomplete
       v-model="select"
       :loading="loading"
