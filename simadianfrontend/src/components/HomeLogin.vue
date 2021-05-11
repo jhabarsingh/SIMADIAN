@@ -53,6 +53,7 @@
 
     <v-main>
       <Item />
+      <Footer />
     </v-main>
   </v-app>
 </template>
@@ -60,10 +61,12 @@
 <script>
   import List from './List';
   import Item from '../components/items/Items'
+  import Footer from './Footer.vue';
   export default {
     components: {
       List,
-      Item
+      Item,
+      Footer
     },
     data: () => ({ drawer: null }),
   }
