@@ -30,7 +30,20 @@ export default {
         Message,
         EmojiPicker,
         Chats
-    }
+    },
+    data () {
+      return {
+        content: '',
+        chatMessages: [],
+        emojiPanel: false,
+        currentRef: {},
+        loading: false,
+        totalChatHeight: 0
+      }
+    },
+    props: [
+      'id'
+    ]
 }
 </script>
 

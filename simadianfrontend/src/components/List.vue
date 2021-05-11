@@ -65,7 +65,7 @@
         { text: 'Home', icon: 'mdi-home', route: 'home' },
         { text: 'Favourite ', icon: 'mdi-account-multiple', route: 'favourite' },
         { text: 'Inbox', icon: 'mdi-star', route: 'inbox' },
-        { text: 'Recent Chat', icon: 'mdi-history', route: 'recent-chat' },
+        { text: 'Recent Chat', icon: 'mdi-history', route: 'chats' },
         { text: 'Near By', icon: 'mdi-check-circle', route: 'nearby' },
         { text: 'Search Filter', icon: 'mdi-cloud-upload', route: 'search-filter' },
         { text: 'Logout', icon: 'mdi-logout', route: 'logout' },

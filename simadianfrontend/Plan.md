@@ -12,5 +12,5 @@
 	3. Category
 
 ## Message
-	1. Sent
+	1. [Sent](https://github.com/berksaribas/vuetify-chat)
 	2. Recieved
