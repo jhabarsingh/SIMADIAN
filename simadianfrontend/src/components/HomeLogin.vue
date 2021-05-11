@@ -52,16 +52,18 @@
     </v-app-bar>
 
     <v-main>
-
+      <Item />
     </v-main>
   </v-app>
 </template>
 
 <script>
   import List from './List';
+  import Item from '../components/items/Items'
   export default {
     components: {
       List,
+      Item
     },
     data: () => ({ drawer: null }),
   }
