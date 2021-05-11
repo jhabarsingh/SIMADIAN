@@ -31,7 +31,7 @@
             absolute
             color="#036358"
           >
-            <v-btn>See more info</v-btn>
+            <v-btn @click="$router.push('/detail')">See more info</v-btn>
           </v-overlay>
         </v-fade-transition>
       </v-card>
