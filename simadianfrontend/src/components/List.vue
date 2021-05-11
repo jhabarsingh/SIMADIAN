@@ -12,20 +12,19 @@
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
-            <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
+            <v-img src="https://raw.githubusercontent.com/jhabarsingh/SIMADIAN/main/doc/trademark.png"></v-img>
           </v-list-item-avatar>
         </v-list-item>
 
         <v-list-item link>
           <v-list-item-content>
             <v-list-item-title class="title">
-              John Leider
+              SIMADIAN
             </v-list-item-title>
-            <v-list-item-subtitle>john@vuetifyjs.com</v-list-item-subtitle>
+            <v-list-item-subtitle>Let's Sell it</v-list-item-subtitle>
           </v-list-item-content>
 
           <v-list-item-action>
-            <v-icon>mdi-menu-down</v-icon>
           </v-list-item-action>
         </v-list-item>
       </v-list>
@@ -62,8 +61,8 @@
     data: () => ({
       selectedItem: 0,
       items: [
-        { text: 'My Files', icon: 'mdi-folder' },
-        { text: 'Shared with me', icon: 'mdi-account-multiple' },
+        { text: 'Home', icon: 'mdi-home' },
+        { text: 'Shared ', icon: 'mdi-account-multiple' },
         { text: 'Starred', icon: 'mdi-star' },
         { text: 'Recent', icon: 'mdi-history' },
         { text: 'Offline', icon: 'mdi-check-circle' },
