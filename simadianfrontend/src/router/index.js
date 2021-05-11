@@ -56,6 +56,11 @@ const routes = [
     component: () => import('../components/items/WriteMessageCard.vue')
   },
   {
+    path: '/search-filter',
+    name: 'SearchFilter',
+    component: () => import('../components/SearchFilter.vue')
+  },
+  {
     path: '/logout',
     name: 'Logout',
     component: () => import('../components/Logout.vue')
