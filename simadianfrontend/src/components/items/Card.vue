@@ -29,6 +29,7 @@
           <v-overlay
             v-if="hover"
             absolute
+            style="z-index:0;"
             color="#036358"
           >
             <v-btn @click="$router.push('/detail')">See more info</v-btn>
