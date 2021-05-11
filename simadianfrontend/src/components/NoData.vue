@@ -18,10 +18,6 @@
           No Data Available
         </div>
         <div>
-          <span
-            class="display-2 font-weight-black"
-            v-text="avg || '—'"
-          ></span>
         </div>
       </v-row>
 
