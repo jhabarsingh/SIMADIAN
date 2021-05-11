@@ -54,7 +54,7 @@
           'https://www.instagram.com/bhatijhabarsingh/',
           'https://github.com/jhabarsingh/SIMADIAN'
       ],
-      footer: "Success is nothing more than a few simple disciplines, practiced every day."
+      footer: "Gratitude makes sense of our past, brings peace for today, and creates a vision for tomorrow."
     }),
 
     methods: {
