@@ -2,6 +2,7 @@
   <v-card
     class="mx-auto"
     max-width="500"
+    style="margin-top: 10px;"
   >
     <v-toolbar
       color="deep-purple accent-4"
