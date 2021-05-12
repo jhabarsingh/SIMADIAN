@@ -1,5 +1,22 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <Drawer
+  >
+    <template
+      v-slot:main
+    >
+      <Received />
+    </template>
+  </Drawer>
 </template>
+
+<script>
+  import Drawer from '../components/Drawer.vue'
+  import Received from '../components/items/Received.vue'
+  export default {
+
+    components: {
+      Drawer,
+      Received
+    },
+  }
+</script>

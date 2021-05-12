@@ -4,19 +4,19 @@
     <template
       v-slot:main
     >
-      <Sent />
+      <Register />
     </template>
   </Drawer>
 </template>
 
 <script>
+  import Register from '../components/Register'
   import Drawer from '../components/Drawer.vue'
-  import Sent from '../components/items/Sent.vue'
   export default {
 
     components: {
-      Drawer,
-      Sent
+      Register,
+      Drawer
     },
   }
 </script>

@@ -121,7 +121,6 @@
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
-    background: url('https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg');
   }
 
   .input {

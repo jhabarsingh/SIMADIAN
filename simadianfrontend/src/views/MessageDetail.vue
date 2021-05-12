@@ -4,19 +4,19 @@
     <template
       v-slot:main
     >
-      <Sent />
+      <MessageDetail />
     </template>
   </Drawer>
 </template>
 
 <script>
   import Drawer from '../components/Drawer.vue'
-  import Sent from '../components/items/Sent.vue'
+  import MessageDetail from '../components/items/MessageDetail.vue'
   export default {
 
     components: {
       Drawer,
-      Sent
+      MessageDetail
     },
   }
 </script>

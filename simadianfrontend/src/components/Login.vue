@@ -111,18 +111,7 @@
     margin-top: 10px;
   }
 
-  .v-app::before {
-    content: '';
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background: url('https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg');
-  }
-
+ 
   .input {
     margin-top: 10px;
   }

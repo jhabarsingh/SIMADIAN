@@ -1,8 +1,5 @@
 <template>
-  <v-parallax
-    dark
-    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-    style="height:100vh;"
+  <v-card
   >
     <v-row
       align="center"
@@ -15,7 +12,7 @@
         <LogoutCard />
       </v-col>
     </v-row>
-  </v-parallax>
+  </v-card>
 </template>
 
 <script>

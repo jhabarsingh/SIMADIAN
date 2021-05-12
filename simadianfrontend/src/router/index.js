@@ -18,52 +18,57 @@ const routes = [
   {
     path: '/register',
     name: 'Register',
-    component: () => import('../components/Register.vue')
+    component: () => import('../views/Register.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../components/Login.vue')
+    component: () => import('../views/Login.vue')
   },
   {
     path: '/detail',
     name: 'Detail',
-    component: () => import('../components/items/ItemDetail.vue')
+    component: () => import('../views/ItemDetail.vue')
   },
   {
     path: '/sent',
     name: 'Sent',
-    component: () => import('../components/items/Sent.vue')
+    component: () => import('../views/Sent.vue')
   },
   {
     path: '/favourite',
     name: 'Favourite',
-    component: () => import('../components/items/Favourite.vue')
+    component: () => import('../views/Favourite.vue')
   },
   {
     path: '/received',
     name: 'Received',
-    component: () => import('../components/items/Received.vue')
+    component: () => import('../views/Inbox.vue')
   },
   {
     path: '/message-detail',
     name: 'MessageDetail',
-    component: () => import('../components/items/MessageDetail.vue')
+    component: () => import('../views/MessageDetail.vue')
   },
   {
     path: '/write-message',
     name: 'WriteMessage',
-    component: () => import('../components/items/WriteMessageCard.vue')
+    component: () => import('../views/WriteMessage.vue')
+  },
+  {
+    path: '/update-profile',
+    name: 'WriteMessage',
+    component: () => import('../views/WriteMessage.vue')
   },
   {
     path: '/search-filter',
     name: 'SearchFilter',
-    component: () => import('../components/SearchFilter.vue')
+    component: () => import('../views/SearchFilter.vue')
   },
   {
     path: '/logout',
     name: 'Logout',
-    component: () => import('../components/Logout.vue')
+    component: () => import('../views/Logout.vue')
   },
 
 ]
