@@ -40,7 +40,7 @@
           <v-list-item
             v-for="(item, i) in items"
             :key="i"
-            @click="$router.push(`/${item.route}`)"
+            @click="goTo(item.route)"
           >
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
@@ -73,6 +73,13 @@
     }),
     props: [
         "drawer",
-    ]
+    ],
+
+    methods: {
+      goTo(url) {
+        this.$store.state.drawer = !this.$store.state.drawer
+        this.$router.push(`/${url}`)
+      }
+    }
   }
 </script>
