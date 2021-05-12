@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container class="grey lighten-5"
-      v-if="false"
+      v-if="true"
     >
       <search-bar />
       <v-row no-gutters>

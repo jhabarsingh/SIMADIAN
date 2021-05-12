@@ -64,8 +64,8 @@
       items: [
         { text: 'Home', icon: 'mdi-home', route: 'home' },
         { text: 'Favourite ', icon: 'mdi-account-multiple', route: 'favourite' },
+        { text: 'Inbox', icon: 'mdi-history', route: 'received' },
         { text: 'Sent', icon: 'mdi-star', route: 'sent' },
-        { text: 'Received', icon: 'mdi-history', route: 'received' },
         { text: 'Search Filter', icon: 'mdi-cloud-upload', route: 'search-filter' },
         { text: 'Logout', icon: 'mdi-logout', route: 'logout' },
       ],
