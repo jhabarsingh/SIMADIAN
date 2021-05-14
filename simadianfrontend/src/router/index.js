@@ -60,15 +60,20 @@ const routes = [
     name: 'UserUpdate',
     component: () => import('../views/UserUpdate.vue')
   },
-  {
-    path: '/search-filter',
-    name: 'SearchFilter',
-    component: () => import('../views/SearchFilter.vue')
-  },
+  // {
+  //   path: '/search-filter',
+  //   name: 'SearchFilter',
+  //   component: () => import('../views/SearchFilter.vue')
+  // },
   {
     path: '/logout',
     name: 'Logout',
     component: () => import('../views/Logout.vue')
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue')
   },
 
 ]
