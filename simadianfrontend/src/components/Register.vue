@@ -5,7 +5,7 @@
     
     <v-card
     class="card"
-    :elevation="24"
+    :elevation="2"
     >
       
       <v-form

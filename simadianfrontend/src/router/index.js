@@ -57,8 +57,8 @@ const routes = [
   },
   {
     path: '/update-profile',
-    name: 'WriteMessage',
-    component: () => import('../views/WriteMessage.vue')
+    name: 'UserUpdate',
+    component: () => import('../views/UserUpdate.vue')
   },
   {
     path: '/search-filter',
