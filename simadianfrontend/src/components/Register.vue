@@ -15,24 +15,21 @@
                 style="padding:30px;"
             >
                 <v-text-field
-                v-model="name"
-                :counter="10"
+                v-model="username"
                 :rules="nameRules"
                 label="Username"
                 required
                 ></v-text-field>
 
                 <v-text-field
-                v-model="name"
-                :counter="10"
+                v-model="firstname"
                 :rules="nameRules"
                 label="First Name"
                 required
                 ></v-text-field>
 
                 <v-text-field
-                v-model="name"
-                :counter="10"
+                v-model="lastname"
                 :rules="nameRules"
                 label="Last Name"
                 required
@@ -50,17 +47,16 @@
                 <DatePicker />
 
                 <v-text-field
-                v-model="email"
-                :rules="emailRules"
+                v-model="password"
                 label="Password"
                 required
                 type="password"
                 ></v-text-field>
 
                 <v-text-field
-                v-model="email"
-                :rules="emailRules"
+                v-model="confirm_password"
                 label="Confirm Password"
+                :rules="[handlePassword]"
                 required
                 type="password"
                 ></v-text-field>
@@ -87,37 +83,37 @@
       DatePicker
     },
     data: () => ({
+      select: null,
       valid: true,
-      name: '',
+      username: '',
+      firstname: '',
+      lastname: '',
+      password: '',
+      email: '',
+      confirm_password: '',
       nameRules: [
         v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
-      email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-      select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
-      checkbox: false,
+      ]
     }),
 
     methods: {
       validate () {
-        this.$refs.form.validate()
+        let a = this.$refs.form.validate()
+        
+        if(true) {
+
+        }
       },
-      reset () {
-        this.$refs.form.reset()
-      },
-      resetValidation () {
-        this.$refs.form.resetValidation()
-      },
+      handlePassword () {
+        if(this.password != this.confirm_password)  {
+          return 'Password mismatch'
+        }
+        return true;
+      }
     },
   }
 </script>
