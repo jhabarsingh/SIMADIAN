@@ -3,6 +3,11 @@
         style="max-width:800px;margin:auto;"
     >
         <template>
+          <center 
+            style="padding:10px;font-size:30px;text-transform:uppercase;"
+          >
+            Sign Up
+          </center>
             <v-form
                 ref="form"
                 v-model="valid"
@@ -13,9 +18,26 @@
                 v-model="name"
                 :counter="10"
                 :rules="nameRules"
-                label="Name"
+                label="Username"
                 required
                 ></v-text-field>
+
+                <v-text-field
+                v-model="name"
+                :counter="10"
+                :rules="nameRules"
+                label="First Name"
+                required
+                ></v-text-field>
+
+                <v-text-field
+                v-model="name"
+                :counter="10"
+                :rules="nameRules"
+                label="Last Name"
+                required
+                ></v-text-field>
+
 
                 <v-text-field
                 v-model="email"
@@ -23,52 +45,47 @@
                 label="E-mail"
                 required
                 ></v-text-field>
+                
 
-                <v-select
-                v-model="select"
-                :items="items"
-                :rules="[v => !!v || 'Item is required']"
-                label="Item"
-                required
-                ></v-select>
+                <DatePicker />
 
-                <v-checkbox
-                v-model="checkbox"
-                :rules="[v => !!v || 'You must agree to continue!']"
-                label="Do you agree?"
+                <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                label="Password"
                 required
-                ></v-checkbox>
+                type="password"
+                ></v-text-field>
+
+                <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                label="Confirm Password"
+                required
+                type="password"
+                ></v-text-field>
 
                 <v-btn
                 :disabled="!valid"
-                color="success"
+                color="primary"
                 class="mr-4"
                 @click="validate"
                 >
                 Validate
                 </v-btn>
 
-                <v-btn
-                color="error"
-                class="mr-4"
-                @click="reset"
-                >
-                Reset Form
-                </v-btn>
-
-                <v-btn
-                color="warning"
-                @click="resetValidation"
-                >
-                Reset Validation
-                </v-btn>
             </v-form>
             </template>
     </v-card>
 </template>
 
 <script>
+  import DatePicker from './DatePicker.vue'
+
   export default {
+    components: {
+      DatePicker
+    },
     data: () => ({
       valid: true,
       name: '',

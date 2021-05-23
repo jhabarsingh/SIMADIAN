@@ -23,7 +23,17 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/Login.vue'),
+    // beforeEnter(to, from, next) {
+    //   if(localStorage.getItem("token")) {
+    //     //check token validation
+
+    //     next();
+    //   }
+    //   else {
+    //     next("/login");
+    //   }
+    // }
   },
   {
     path: '/detail',
@@ -60,15 +70,10 @@ const routes = [
     name: 'UserUpdate',
     component: () => import('../views/UserUpdate.vue')
   },
-  // {
-  //   path: '/search-filter',
-  //   name: 'SearchFilter',
-  //   component: () => import('../views/SearchFilter.vue')
-  // },
   {
     path: '/logout',
     name: 'Logout',
-    component: () => import('../views/Logout.vue')
+    component: () => import('../views/Logout.vue'),
   },
   {
     path: '*',
