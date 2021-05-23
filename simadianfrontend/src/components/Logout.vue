@@ -1,6 +1,4 @@
 <template>
-  <v-card
-  >
     <v-row
       align="center"
       justify="center"
@@ -12,7 +10,6 @@
         <LogoutCard />
       </v-col>
     </v-row>
-  </v-card>
 </template>
 
 <script>
