@@ -105,7 +105,11 @@
         let a = this.$refs.form.validate()
         
         if(true) {
-
+          this.$axios.post(this.$store.state.URL + "/register", {
+            username: this.username,
+            firstname: this.firstname,
+            lastname: this.lastname
+          }) 
         }
       },
       handlePassword () {
