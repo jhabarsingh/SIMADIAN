@@ -1,4 +1,4 @@
-
+#  Ubuntu Server 18.04 LTS (HVM),
 
 sudo apt-get upgrade -y
 sudo apt-get update -y
@@ -28,6 +28,10 @@ gunicorn --bind 0.0.0.0:8000 TestProject.wsgi:application ## similar to runserve
 sudo apt-get install -y supervisor ## This command holds the website after we logout
 
 8. Config supervisor
+mkdir /var/log/gunicorn/
+touch /var/log/gunicorn/gunicorn.err.log
+touch /var/log/gunicorn/gunicorn.out.log
+
 cd /etc/supervisor/conf.d
 sudo touch gunicorn.conf
 
