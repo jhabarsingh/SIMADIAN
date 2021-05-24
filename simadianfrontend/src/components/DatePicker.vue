@@ -53,6 +53,7 @@
     watch: {
       date (val) {
         this.dateFormatted = this.formatDate(this.date)
+        this.$store.state.dob = this.dateFormatted;
       },
     },
 

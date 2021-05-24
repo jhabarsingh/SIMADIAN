@@ -108,11 +108,15 @@
         let a = this.$refs.form.validate()
         
         if(true) {
-          this.$axios.post(this.$store.state.URL + "/register", {
+         this.$store.dispatch('userRegister', JSON.stringify({
             username: this.username,
-            firstname: this.firstname,
-            lastname: this.lastname
-          }) 
+            first_name: this.firstname,
+            last_name: this.lastname,
+            date_of_birth: this.$store.state.dob,
+            email: this.email,
+            password: this.password,
+            confirm_password: this.confirm_password,
+          }));
         }
       },
       handlePassword () {
