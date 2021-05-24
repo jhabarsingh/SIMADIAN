@@ -8,6 +8,9 @@
           >
             Sign Up
           </center>
+
+           <v-divider />
+          
             <v-form
                 ref="form"
                 v-model="valid"
