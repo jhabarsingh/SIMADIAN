@@ -1,5 +1,7 @@
 URL = "http://ec2-18-224-181-83.us-east-2.compute.amazonaws.com/users/create/"
 
+URL = "http://localhost:8000/users/create/"
+
 user = {
       "username": "jhabarsinghbhat12i",
       "first_name": "jhabar",
