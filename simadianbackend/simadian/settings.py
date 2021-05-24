@@ -33,7 +33,7 @@ DEBUG = True
 if(DEBUG != True):
     DEBUG = False
     
-REMOTE = True
+REMOTE = False
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jhabarsinghbhati.me']
 
