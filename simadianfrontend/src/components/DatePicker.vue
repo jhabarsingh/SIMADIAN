@@ -36,6 +36,8 @@
 
 
 <script>
+  import EventBus from './event-bus';
+
   export default {
     data: vm => ({
       date: new Date().toISOString().substr(0, 10),
@@ -46,7 +48,9 @@
 
     computed: {
       computedDateFormatted () {
-        return this.formatDate(this.date)
+        let data = this.formatDate(this.date);
+        EventBus.$emit('EVENT_NAME', data);
+        return data;
       },
     },
 

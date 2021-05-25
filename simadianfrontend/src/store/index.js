@@ -6,26 +6,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    URL: "http://ec2-18-224-181-83.us-east-2.compute.amazonaws.com/",
+    URL: "http://localhost:8000/",
     drawer: null,
-    user: null,
-    dob: null
+    user: null
   },
   mutations: {
   },
   actions: {
     userRegister({commit, state}, data) {
       console.log(data);
-      let options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: data
-      }
-      fetch(state.URL + 'users/create/', options).then(res => {
-          console.log(res)
-      }).then(err => {
+      
+      axios.post(state.URL + 'users/create', data)
+      .then(data => {
+        console.log(data);
+      }).then(err =>{
         console.log(err);
       })
     },

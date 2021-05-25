@@ -80,7 +80,7 @@
 
 <script>
   import DatePicker from './DatePicker.vue'
-
+  import EventBus from './event-bus';
   export default {
     components: {
       DatePicker
@@ -114,8 +114,7 @@
             last_name: this.lastname,
             date_of_birth: this.$store.state.dob,
             email: this.email,
-            password: this.password,
-            confirm_password: this.confirm_password,
+            password: this.password
           }));
         }
       },
@@ -126,5 +125,11 @@
         return true;
       }
     },
+
+    mounted () {
+      EventBus.$on('EVENT_NAME', function (payLoad) {
+        this.date_of_birth = payLoad;
+      });
+    }
   }
 </script>
