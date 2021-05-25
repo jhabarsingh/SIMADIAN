@@ -81,13 +81,12 @@
 <script>
   import DatePicker from './DatePicker.vue'
   import EventBus from './event-bus';
-  import { mapActions } from "vuex"
 
   export default {
     components: {
       DatePicker
     },
-    data: () => ({
+    data: vm => ({
       select: null,
       valid: true,
       username: '',
@@ -96,6 +95,7 @@
       password: '',
       email: '',
       confirm_password: '',
+      date_of_birth: vm.formatDate(new Date().toISOString().substr(0, 10)),
       nameRules: [
         v => !!v || 'Name is required',
       ],
@@ -106,6 +106,12 @@
     }),
 
     methods: {
+      formatDate (date) {
+        if (!date) return null
+
+        const [year, month, day] = date.split('-')
+        return `${month}/${day}/${year}`
+      },
       validate () {
         let a = this.$refs.form.validate()
         
@@ -114,7 +120,7 @@
             username: this.username,
             first_name: this.firstname,
             last_name: this.lastname,
-            date_of_birth: this.$store.state.dob,
+            date_of_birth: this.date_of_birth,
             email: this.email,
             password: this.password
           }));

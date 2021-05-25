@@ -16,7 +16,7 @@ export default new Vuex.Store({
     userRegister({commit, state}, data) {
       console.log(data);
       
-      axios.post(state.URL + 'users/create', data)
+      axios.post(state.URL + 'users/create/', data)
       .then(data => {
         console.log(data);
       }).then(err =>{
