@@ -3,6 +3,14 @@
         style="max-width:800px;margin:auto;"
     >
         <template>
+          <center 
+            style="padding:10px;font-size:30px;text-transform:uppercase;"
+          >
+            Sign Up
+          </center>
+
+           <v-divider />
+          
             <v-form
                 ref="form"
                 v-model="valid"
@@ -10,12 +18,26 @@
                 style="padding:30px;"
             >
                 <v-text-field
-                v-model="name"
-                :counter="10"
+                v-model="username"
                 :rules="nameRules"
-                label="Name"
+                label="Username"
                 required
                 ></v-text-field>
+
+                <v-text-field
+                v-model="firstname"
+                :rules="nameRules"
+                label="First Name"
+                required
+                ></v-text-field>
+
+                <v-text-field
+                v-model="lastname"
+                :rules="nameRules"
+                label="Last Name"
+                required
+                ></v-text-field>
+
 
                 <v-text-field
                 v-model="email"
@@ -23,84 +45,120 @@
                 label="E-mail"
                 required
                 ></v-text-field>
+                
 
-                <v-select
-                v-model="select"
-                :items="items"
-                :rules="[v => !!v || 'Item is required']"
-                label="Item"
-                required
-                ></v-select>
+                <DatePicker />
 
-                <v-checkbox
-                v-model="checkbox"
-                :rules="[v => !!v || 'You must agree to continue!']"
-                label="Do you agree?"
+                <v-text-field
+                v-model="password"
+                label="Password"
                 required
-                ></v-checkbox>
+                type="password"
+                ></v-text-field>
+
+                <v-text-field
+                v-model="confirm_password"
+                label="Confirm Password"
+                :rules="[handlePassword]"
+                required
+                type="password"
+                ></v-text-field>
 
                 <v-btn
                 :disabled="!valid"
-                color="success"
+                color="primary"
                 class="mr-4"
                 @click="validate"
                 >
                 Validate
                 </v-btn>
 
-                <v-btn
-                color="error"
-                class="mr-4"
-                @click="reset"
-                >
-                Reset Form
-                </v-btn>
-
-                <v-btn
-                color="warning"
-                @click="resetValidation"
-                >
-                Reset Validation
-                </v-btn>
             </v-form>
             </template>
+
+            <DialogAlert />
     </v-card>
 </template>
 
 <script>
+  import DatePicker from './DatePicker.vue'
+  import EventBus from './event-bus';
+  import DialogAlert from './DialogAlert.vue'
   export default {
-    data: () => ({
+    components: {
+      DatePicker,
+      DialogAlert
+    },
+    data: vm => ({
+      select: null,
       valid: true,
-      name: '',
+      username: '',
+      firstname: '',
+      lastname: '',
+      password: '',
+      email: '',
+      confirm_password: '',
+      date_of_birth: vm.formatDate(new Date().toISOString().substr(0, 10)),
       nameRules: [
         v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
-      email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-      select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
-      checkbox: false,
+      ]
     }),
 
     methods: {
+      formatDate (date) {
+        if (!date) return null
+
+        const [year, month, day] = date.split('-')
+        return `${year}-${month}-${day}`
+      },
       validate () {
-        this.$refs.form.validate()
+        let a = this.$refs.form.validate()
+        
+        if(true) {
+         this.$store.dispatch('userRegister', {
+            username: this.username,
+            first_name: this.firstname,
+            last_name: this.lastname,
+            date_of_birth: this.date_of_birth,
+            email: this.email,
+            password: this.password
+          })
+          
+          .then(res => {
+            this.$router.push("/login");
+          })
+          
+          .catch(err => {
+            this.$store.commit('changeDialog', {
+              'heading': 'Instructions',
+              details: [
+                'username should not be blank',
+                'username and email should be unique',
+                'email should be valid',
+                'password should contain alphabet, number and punctuation',
+                'password shouldn\'t match with your name'
+              ]
+            })
+            this.$store.state.dialog = true;
+          })
+        }
       },
-      reset () {
-        this.$refs.form.reset()
-      },
-      resetValidation () {
-        this.$refs.form.resetValidation()
-      },
+      handlePassword () {
+        if(this.password != this.confirm_password)  {
+          return 'Password mismatch'
+        }
+        return true;
+      }
     },
+
+    mounted () {
+      EventBus.$on('EVENT_NAME', function (payLoad) {
+        this.date_of_birth = payLoad;
+      });
+    }
   }
 </script>
