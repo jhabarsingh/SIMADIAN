@@ -26,7 +26,7 @@
                 >
                     <v-list-item-content>
                         <v-list-item-title v-text="item"
-                            style="font-size:15px;margin:5px;"
+                            style="font-size:15px;margin:5px;text-transform:capitalize;"
                         ></v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>

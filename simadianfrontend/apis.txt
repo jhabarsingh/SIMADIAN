@@ -30,3 +30,5 @@ urlpatterns = [
 api/token/
 
 api/token/refresh
+
+api/token/verify
