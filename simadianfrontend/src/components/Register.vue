@@ -75,16 +75,19 @@
 
             </v-form>
             </template>
+
+            <DialogAlert />
     </v-card>
 </template>
 
 <script>
   import DatePicker from './DatePicker.vue'
   import EventBus from './event-bus';
-
+  import DialogAlert from './DialogAlert.vue'
   export default {
     components: {
-      DatePicker
+      DatePicker,
+      DialogAlert
     },
     data: vm => ({
       select: null,
@@ -110,20 +113,37 @@
         if (!date) return null
 
         const [year, month, day] = date.split('-')
-        return `${month}/${day}/${year}`
+        return `${year}-${month}-${day}`
       },
       validate () {
         let a = this.$refs.form.validate()
         
         if(true) {
-         this.$store.dispatch('userRegister', JSON.stringify({
+         this.$store.dispatch('userRegister', {
             username: this.username,
             first_name: this.firstname,
             last_name: this.lastname,
             date_of_birth: this.date_of_birth,
             email: this.email,
             password: this.password
-          }));
+          }).then(res => {
+            this.$router.push("/login");
+          }).then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            this.$store.commit('changeDialog', {
+              'heading': 'Instructions',
+              details: [
+                'username should not be blank',
+                'username and email should be unique',
+                'email should be valid',
+                'password should contain alphabet, number and punctuation',
+                'password shouldn\'t match with your name'
+              ]
+            })
+            this.$store.state.dialog = true;
+          })
         }
       },
       handlePassword () {
