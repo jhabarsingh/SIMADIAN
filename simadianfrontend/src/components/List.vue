@@ -63,12 +63,11 @@
       selectedItem: 0,
       items: [
         { text: 'Home', icon: 'mdi-home', route: 'home' },
-        { text: 'Favourite ', icon: 'mdi-account-multiple', route: 'favourite' },
+        // { text: 'Favourite ', icon: 'mdi-account-multiple', route: 'favourite' },
         { text: 'Inbox', icon: 'mdi-history', route: 'received' },
         { text: 'Sent', icon: 'mdi-star', route: 'sent' },
-        // { text: 'Search Filter', icon: 'mdi-cloud-upload', route: 'search-filter' },
         { text: 'Update Profile', icon: 'mdi-cloud-upload', route: 'update-profile' },
-        { text: 'Logout', icon: 'mdi-logout', route: 'logout' },
+        { text: 'Upload Item', icon: 'mdi-upload', route: 'upload-item' },
       ],
     }),
     props: [

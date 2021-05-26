@@ -240,6 +240,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # AWS
 
+'''
+If Remote
 AWS_ACCESS_KEY_ID = 'AKIA2SR3A3ZOZVJPPCWN'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'simadian'
@@ -258,3 +260,4 @@ DEFAULT_FILE_STORAGE = 'simadian.storage_backends.MediaStorage'
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # LOGIN_URL = '/admin/'
+'''

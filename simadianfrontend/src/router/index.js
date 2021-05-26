@@ -24,16 +24,15 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue'),
-    // beforeEnter(to, from, next) {
-    //   if(localStorage.getItem("token")) {
-    //     //check token validation
-
-    //     next();
-    //   }
-    //   else {
-    //     next("/login");
-    //   }
-    // }
+    beforeEnter(to, from, next) {
+      if(localStorage.getItem("access")) {
+        //check token validation
+        router.push('/home')
+      }
+      else {
+        next();
+      }
+    }
   },
   {
     path: '/detail',
@@ -74,6 +73,11 @@ const routes = [
     path: '/logout',
     name: 'Logout',
     component: () => import('../views/Logout.vue'),
+  },
+  {
+    path: '/upload-item',
+    name: 'UploadItems',
+    component: () => import('../views/UploadItems.vue')
   },
   {
     path: '*',

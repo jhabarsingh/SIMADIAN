@@ -48,8 +48,9 @@
     methods: {
         logout() {
             localStorage.clear();
+            this.$store.state.isLoggedin = false;
+            this.$store.state.dialog = false;
             this.$router.push('/home')
-            this.$store.state.dialog = false
         }
     }
   }

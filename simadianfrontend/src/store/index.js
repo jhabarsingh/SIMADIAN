@@ -16,7 +16,11 @@ export default new Vuex.Store({
       "details": [
         "Hi"
       ]
-    }
+    },
+    isLoggedin: (localStorage.getItem('access') ? true: false)
+  },
+  getters: {
+
   },
   mutations: {
     changeDialog(state, {heading, details}) {

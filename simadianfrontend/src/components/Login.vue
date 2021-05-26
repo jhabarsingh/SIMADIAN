@@ -75,6 +75,7 @@ import DialogAlert from './DialogAlert.vue'
             password: this.password
           })
           .then(res => {
+            this.$store.state.isLoggedin = true;
             this.$router.push("/home");
           })
           .catch(err => {

@@ -18,37 +18,56 @@
 
       <v-divider style="margin: 0px 10px;" />
 
-      <v-btn
-        class="ma-2"
-        color="primary"
-        dark
-        rounded
-        @click="$router.push('/login')"
-      >
-        Login
-        <v-icon
-          dark
-          right
-        >
-          mdi-login
-        </v-icon>
-      </v-btn>
+      <template v-if="!$store.state.isLoggedin">
+            <v-btn
+              class="ma-2"
+              color="primary"
+              dark
+              rounded
+              @click="$router.push('/login')"
+            >
+              Login
+              <v-icon
+                dark
+                right
+              >
+                mdi-login
+              </v-icon>
+            </v-btn>
 
-      <v-btn
-        class="ma-2"
-        color="warning"
-        dark
-        rounded
-        @click="$router.push('/register')"
-      >
-        Sign Up
-        <v-icon
-          dark
-          right
-        >
-          mdi-account
-        </v-icon>
-      </v-btn>
+            <v-btn
+              class="ma-2"
+              color="warning"
+              dark
+              rounded
+              @click="$router.push('/register')"
+            >
+              Sign Up
+              <v-icon
+                dark
+                right
+              >
+                mdi-account
+              </v-icon>
+            </v-btn>
+      </template>
+      <template v-else>
+            <v-btn
+              class="ma-2"
+              color="warning"
+              dark
+              rounded
+              @click="$router.push('/logout')"
+            >
+              Logout
+              <v-icon
+                dark
+                right
+              >
+                mdi-logout
+              </v-icon>
+            </v-btn>
+      </template>
 
     </v-app-bar>
 
