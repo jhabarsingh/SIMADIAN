@@ -36,14 +36,30 @@ export default new Vuex.Store({
 
     async userLogin({commit, state}, data) {
       try {
+        console.log(data);
         let res = await axios.post(state.URL + 'api/token/', data)
         res = res.data;
         localStorage.setItem("refresh", res.refresh);
         localStorage.setItem("access", res.access);
-        console.log(res);
-
         return res;
       } catch (err) {
+        if(err.response) {
+            console.log(err.response);
+        }
+        throw err;
+      }
+    },
+
+    async verifyToken({commit, state}, data) {
+      try {
+        console.log(data);
+        let res = await axios.post(state.URL + 'api/token/verify/', data)
+        res = res.data;
+        console.log(res);
+      } catch (err) {
+        if(err.response) {
+            console.log(err.respons)
+        }
         throw err;
       }
     },
