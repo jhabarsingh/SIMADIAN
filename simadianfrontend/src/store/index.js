@@ -28,7 +28,7 @@ export default new Vuex.Store({
     async userRegister({commit, state}, data) {
       try {
         let res = await axios.post(state.URL + 'users/create/', data)
-        return res;
+        return res.data;
       } catch (err) {
         throw err;
       }
@@ -55,7 +55,8 @@ export default new Vuex.Store({
         console.log(data);
         let res = await axios.post(state.URL + 'api/token/verify/', data)
         res = res.data;
-        console.log(res);
+
+        return res;
       } catch (err) {
         if(err.response) {
             console.log(err.respons)

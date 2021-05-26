@@ -75,7 +75,7 @@ import DialogAlert from './DialogAlert.vue'
             password: this.password
           })
           .then(res => {
-            this.$router.push("/");
+            this.$router.push("/home");
           })
           .catch(err => {
             this.$store.commit('changeDialog', {
