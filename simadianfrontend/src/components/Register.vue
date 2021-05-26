@@ -126,11 +126,12 @@
             date_of_birth: this.date_of_birth,
             email: this.email,
             password: this.password
-          }).then(res => {
-            this.$router.push("/login");
-          }).then(res => {
-            console.log(res);
           })
+          
+          .then(res => {
+            this.$router.push("/login");
+          })
+          
           .catch(err => {
             this.$store.commit('changeDialog', {
               'heading': 'Instructions',

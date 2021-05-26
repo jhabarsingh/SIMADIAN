@@ -18,11 +18,13 @@
       
     </v-card-subtitle>
 
-    <v-card-actions>
+    <v-card-actions
+        style="padding-bottom: 20px;"
+    >
       <v-btn
         color="orange lighten-2"
         text
-        @click="$router.push('/home')"
+        @click="$store.state.dialog = true"
       >
         Logout
       </v-btn>
@@ -41,19 +43,28 @@
       <div v-show="show">
         <v-divider></v-divider>
 
-        <v-card-text>
+        <v-card-text
+        >
           Gratitude is the healthiest of all human emotions. The more you express gratitude for what you have, the more likely you will have even more to express gratitude for.
         </v-card-text>
       </div>
     </v-expand-transition>
+
+    <LogoutConfirm />
   </v-card>
 </template>
 
 
 <script>
+  import LogoutConfirm from './LogoutConfirm.vue'
   export default {
+    components: {
+      LogoutConfirm,
+    },
     data: () => ({
       show: false,
     }),
+    methods: {
+    }
   }
 </script>
