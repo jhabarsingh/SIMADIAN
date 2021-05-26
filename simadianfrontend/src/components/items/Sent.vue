@@ -1,26 +1,18 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="500"
+    max-width="1000"
     style="margin-top: 20px"
   >
     <v-toolbar
       color="pink"
       dark
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Inbox</v-toolbar-title>
+      <v-toolbar-title>Sent</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-checkbox-marked-circle</v-icon>
-      </v-btn>
     </v-toolbar>
 
     <v-list two-line>

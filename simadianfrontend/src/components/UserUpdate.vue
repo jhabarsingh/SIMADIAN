@@ -6,7 +6,7 @@
           <center 
             style="padding:10px;font-size:30px;text-transform:uppercase;"
           >
-            Sign Up
+            Update Details
           </center>
 
            <v-divider />
