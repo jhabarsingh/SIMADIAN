@@ -80,6 +80,11 @@ const routes = [
     component: () => import('../views/UploadItems.vue')
   },
   {
+    path: '/my-files',
+    name: 'MyFiles',
+    component: () => import('../views/MyFiles.vue')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: () => import('../views/NotFound.vue')

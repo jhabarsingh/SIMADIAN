@@ -63,11 +63,11 @@
       selectedItem: 0,
       items: [
         { text: 'Home', icon: 'mdi-home', route: 'home' },
-        // { text: 'Favourite ', icon: 'mdi-account-multiple', route: 'favourite' },
         { text: 'Inbox', icon: 'mdi-history', route: 'received' },
         { text: 'Sent', icon: 'mdi-star', route: 'sent' },
         { text: 'Update Profile', icon: 'mdi-cloud-upload', route: 'update-profile' },
         { text: 'Upload Item', icon: 'mdi-upload', route: 'upload-item' },
+        { text: 'My Files', icon: 'mdi-file', route: 'my-files' },
       ],
     }),
     props: [
