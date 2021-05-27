@@ -1,5 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from .serializers import ItemSerializer, CategorySerializer, MessageSerializer, MassUploadSerializer
+from .serializers import ItemSerializer, CategorySerializer, MassUploadFileSerializer, MessageSerializer, MassUploadSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.contrib.auth import get_user_model
@@ -217,3 +217,19 @@ class MassFiles(APIView):
             })
         except:
             return Response({"message": "bad request"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MassUploadListApiView(generics.GenericAPIView,
+                       mixins.ListModelMixin):
+    '''
+    Return Mass Upload File List Api View
+    '''
+    queryset = MassUpload.objects.all()
+    serializer_class = MassUploadFileSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['user', 'uploaded_at']
+    authentication_classes = []
+
+    def get(self, request, *args, **kwargs):
+        # List out the Item with given filter fields
+        return self.list(request, *args, **kwargs)

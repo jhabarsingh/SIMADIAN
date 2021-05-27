@@ -10,7 +10,8 @@ from .views import (
     MessageDeleteApiView,
     MessagesReceivedApiView,
     MessagesSentApiView,
-    MassFiles
+    MassFiles,
+    MassUploadListApiView
 )
 
 app_name = 'commerce'
@@ -26,5 +27,7 @@ urlpatterns = [
     path('message/delete/', MessageDeleteApiView.as_view(), name='message_update'),
     path('message/received/', MessagesReceivedApiView.as_view(), name='message_received'),
     path('message/sent/', MessagesSentApiView.as_view(), name='message_sent'),
-    path('files/', MassFiles.as_view(), name='mass_files')
+    path('files/upload', MassFiles.as_view(), name='mass_files'),
+    path('files/', MassUploadListApiView.as_view(), name='mass_files_list'),
+    
 ]

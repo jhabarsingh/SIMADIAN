@@ -49,3 +49,14 @@ class MassUploadSerializer(serializers.ModelSerializer):
         fields = (
             'file',
         )
+
+
+class MassUploadFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MassUpload
+        depth = 1
+        fields = (
+            'user',
+            'file',
+            'uploaded_at'
+        )
