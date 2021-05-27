@@ -1,4 +1,6 @@
 <template>
+  <div>
+      <MultipleFileUpload />
   <v-card
     class="mx-auto"
     max-width="1000"
@@ -40,10 +42,15 @@
       </v-list-item-group>
     </v-list>
   </v-card>
+  </div>
 </template>
 
 <script>
+import MultipleFileUpload from './MultipleFileUpload.vue';
   export default {
+    components: {
+        MultipleFileUpload,
+    },
     data: () => ({
       selected: [2],
       items: [
