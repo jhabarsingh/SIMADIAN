@@ -64,3 +64,12 @@ class Messages(models.Model):
 	sender = models.ForeignKey(User, related_name="senders", on_delete=models.DO_NOTHING)
 	receiver = models.ForeignKey(User, related_name="receivers", on_delete=models.DO_NOTHING)
 	content = models.TextField()
+
+
+class MassUpload(models.Model):
+	'''
+	Mass File Upload
+	'''
+	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="uploader")
+	file = models.FileField(upload_to='videos/')
+	uploaded_at = models.DateTimeField(auto_now_add=True)

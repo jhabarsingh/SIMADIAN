@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from .models import Item, Category, Messages
-
+from .models import Item, Category, Messages, MassUpload
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -41,4 +40,12 @@ class MessageSerializer(serializers.ModelSerializer):
             'sender',
             'receiver',
             'content'
+        )
+
+class MassUploadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MassUpload
+        depth = 3
+        fields = (
+            'file',
         )

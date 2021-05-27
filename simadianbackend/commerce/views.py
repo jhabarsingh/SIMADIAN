@@ -1,5 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from .serializers import ItemSerializer, CategorySerializer, MessageSerializer
+from .serializers import ItemSerializer, CategorySerializer, MessageSerializer, MassUploadSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.contrib.auth import get_user_model
@@ -8,10 +8,9 @@ from rest_framework.views import APIView
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import mixins
-from .models import Item, Category, Messages
+from .models import Item, Category, MassUpload, Messages
 from django.http import Http404
 from rest_framework import status
-
 User = get_user_model()
 
 
@@ -198,3 +197,23 @@ class MessageDeleteApiView(APIView):
             return Response({'message': 'unauthorized'})
         except:
             raise Http404
+
+
+class MassFiles(APIView):
+    '''
+    Create Messages account
+    '''
+    permission_classes = [IsAuthenticated]
+    serializer_class = MassUploadSerializer
+
+    def post(self, request):
+        try:
+            user = request.user
+            data = request.FILES
+            print(data)
+            MassUpload(user=user, file=data.get("file")).save()
+            return Response({
+                "message": "Data"
+            })
+        except:
+            return Response({"message": "bad request"}, status=status.HTTP_400_BAD_REQUEST)
