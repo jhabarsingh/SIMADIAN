@@ -85,6 +85,11 @@ const routes = [
     component: () => import('../views/MyFiles.vue')
   },
   {
+    path: '/test',
+    name: 'Test',
+    component: () => import('../components/others/Test.vue')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: () => import('../views/NotFound.vue')
