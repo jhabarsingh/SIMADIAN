@@ -6,6 +6,7 @@
     <v-file-input
         multiple
         label="Upload Files"
+        v-model="files"
     ></v-file-input>
     <v-btn
         class="mx-2"
@@ -13,6 +14,7 @@
         dark
         small
         color="primary"
+        @click="upload"
     >
     <v-icon dark>
       mdi-upload
@@ -20,3 +22,16 @@
     </v-btn>
   </v-card>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    files: null
+  }),
+  methods: {
+    upload() {
+      console.log(this.files[0]);
+    }
+  }
+}
+</script>
