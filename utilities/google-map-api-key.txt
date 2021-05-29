@@ -22,4 +22,6 @@ AIzaSyDUJNxsNOJ6yt8jJ4NBNmnrXKgMCcCQF9U
 	3. save
 
 
+npm: https://www.npmjs.com/package/vue2-google-maps
 
+code: https://xkjyeah.github.io/vue-google-maps/
