@@ -9,6 +9,7 @@
         :playsinline="true"
         customEventName="customstatechangedeventname"
         style="padding:20px;"
+        width="100vw"
     >
     </video-player>
   </div>
@@ -22,12 +23,14 @@
       return {
         playerOptions: {
           // videojs options
-          muted: true,
+          width: "1000",
+          height: "500",
+          muted: false,
           language: 'en',
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: [{
             type: "video/mp4",
-            src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+            src: "https://mp3land.co/try/browse.php?u=https://pwdown.com/7948/02%20Tune%20Mere%20Jaana%20Emptiness%20(Gajendra%20Verma).mp3"
           }],
           poster: "https://i.pinimg.com/originals/dd/12/95/dd1295c8b9db4fc6958dc2a72d91c8ff.jpg",
         }
