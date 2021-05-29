@@ -21,15 +21,28 @@
                 </p>
             </v-flex>
             <v-flex xs2 sm1 text-xs-center>
-                <v-btn
-                dark
-                @click.stop="toggle ? endSpeechRecognition() : startSpeechRecognition()"
-                icon
-                :color="!toggle ? 'grey' : (speaking ? 'red' : 'red darken-3')"
-                :class="{'animated infinite pulse': toggle}"
+                <div
+                  style="padding:0px 5px;display:flex;justify-content:space-around;width:80px;"
                 >
-                <v-icon>{{toggle ? 'mdi-microphone-off' : 'mdi-microphone'}}</v-icon>
-                </v-btn>
+                  <v-btn
+                    dark
+                    @click.stop="toggle ? endSpeechRecognition() : startSpeechRecognition()"
+                    icon
+                    :color="!toggle ? 'grey' : (speaking ? 'red' : 'red darken-3')"
+                    :class="{'animated infinite pulse': toggle}"
+                  >
+                    <v-icon>{{toggle ? 'mdi-microphone-off' : 'mdi-microphone'}}</v-icon>
+                  </v-btn>
+                  <v-btn
+                    dark
+                    @click="clearSentences"
+                    icon
+                    :color="!toggle ? 'grey' : (speaking ? 'red' : 'red darken-3')"
+                    :class="{'animated infinite pulse': toggle}"
+                  >
+                   <v-icon>mdi-delete</v-icon>
+                  </v-btn>
+                </div>
             </v-flex>
             </v-layout>
         </v-card-text>
@@ -60,6 +73,10 @@ export default {
     }
   },
   methods: {
+    clearSentences () {
+      this.sentences = [];
+      this.text = "";
+    },
     checkCompatibility () {
       if (!recognition) {
         this.error = 'Speech Recognition is not available on this browser. Please use Chrome or Firefox'

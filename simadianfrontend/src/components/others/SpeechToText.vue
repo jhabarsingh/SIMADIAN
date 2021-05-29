@@ -1,5 +1,7 @@
 <template>
-<div>
+<div
+  style="width:80vw;margin:auto;"
+>
     <div>
         <v-text-field
             label="The text"
@@ -14,23 +16,33 @@
             <v-flex xs8 sm9 text-xs-center>
                 <p v-if="error" class="grey--text">{{error}}</p>
                 <p v-else class="mb-0">
-                <template v-if="sentences.length > 0">
-                    <span v-for="(sentence, index) in sentences" :key="index">{{sentence}}. </span>
-                </template>
                 <span>{{runtimeTranscription}}</span>
                 
                 </p>
             </v-flex>
             <v-flex xs2 sm1 text-xs-center>
-                <v-btn
-                dark
-                @click.stop="toggle ? endSpeechRecognition() : startSpeechRecognition()"
-                icon
-                :color="!toggle ? 'grey' : (speaking ? 'red' : 'red darken-3')"
-                :class="{'animated infinite pulse': toggle}"
+                <div
+                  style="padding:0px 5px;display:flex;justify-content:space-around;width:80px;"
                 >
-                <v-icon>{{toggle ? 'mdi-microphone-off' : 'mdi-microphone'}}</v-icon>
-                </v-btn>
+                  <v-btn
+                    dark
+                    @click.stop="toggle ? endSpeechRecognition() : startSpeechRecognition()"
+                    icon
+                    :color="!toggle ? 'grey' : (speaking ? 'red' : 'red darken-3')"
+                    :class="{'animated infinite pulse': toggle}"
+                  >
+                    <v-icon>{{toggle ? 'mdi-microphone-off' : 'mdi-microphone'}}</v-icon>
+                  </v-btn>
+                  <v-btn
+                    dark
+                    @click="clearSentences"
+                    icon
+                    :color="!toggle ? 'grey' : (speaking ? 'red' : 'red darken-3')"
+                    :class="{'animated infinite pulse': toggle}"
+                  >
+                   <v-icon>mdi-delete</v-icon>
+                  </v-btn>
+                </div>
             </v-flex>
             </v-layout>
         </v-card-text>
@@ -40,19 +52,14 @@
 
 <script>
 
-import TextArea from './SpeechHead.vue'
 let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 let recognition = SpeechRecognition? new SpeechRecognition() : false
 
 export default {
-      props: {
+  props: {
     lang: {
       type: String,
       default: 'en-US'
-    },
-    text: {
-      type: [String, null],
-      required: true
     }
   },
   data () {
@@ -61,10 +68,15 @@ export default {
       speaking: false,
       toggle: false,
       runtimeTranscription: '',
-      sentences: []
+      sentences: [],
+      text: ""
     }
   },
   methods: {
+    clearSentences () {
+      this.sentences = [];
+      this.text = "";
+    },
     checkCompatibility () {
       if (!recognition) {
         this.error = 'Speech Recognition is not available on this browser. Please use Chrome or Firefox'
@@ -72,11 +84,7 @@ export default {
     },
     endSpeechRecognition () {
       recognition.stop()
-      this.toggle = false
-      this.$emit('speechend', {
-        sentences: this.sentences,
-        text: this.sentences.join('. ')
-      })
+      this.toggle = false;
     },
     startSpeechRecognition () {
       if (!recognition) {
@@ -103,7 +111,7 @@ export default {
       recognition.addEventListener('end', () => {
         if (this.runtimeTranscription !== '') {
           this.sentences.push(this.capitalizeFirstLetter(this.runtimeTranscription))
-          EventBus.$emit('update:text', `${this.text}${this.sentences.slice(-1)[0]}. `)
+          this.text = this.sentences.join('. ')
         }
         this.runtimeTranscription = ''
         recognition.stop()
