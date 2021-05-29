@@ -1,0 +1,23 @@
+1. Go To https://console.cloud.google.com/
+2. Create A Project
+3. Select The Project
+4. Navigation menu -> Api and Services -> Library
+
+5. Enable These Map Apis
+	1. Places Api
+ 	2. Directions Api
+	3. Geocodeing Api
+	4. Geolocation Api
+	5. Maps Javascript Api
+
+6. Navigation menu -> Api and services -> credentials
+
+7. click on create credentials -> api key
+
+8. restrict key (for security purpose)
+	1. choose HTTP Refer
+	2. websiter restrictions -> add iterns -> add your webiste domain
+	3. save
+
+
+

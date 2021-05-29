@@ -1,7 +1,5 @@
 <template>
-<div
-  style="width:80vw;margin:auto;"
->
+<div>
     <div>
         <v-text-field
             label="The text"
@@ -16,6 +14,9 @@
             <v-flex xs8 sm9 text-xs-center>
                 <p v-if="error" class="grey--text">{{error}}</p>
                 <p v-else class="mb-0">
+                <template v-if="sentences.length > 0">
+                    <span v-for="(sentence, index) in sentences" :key="index">{{sentence}}. </span>
+                </template>
                 <span>{{runtimeTranscription}}</span>
                 
                 </p>
@@ -39,14 +40,19 @@
 
 <script>
 
+import TextArea from './SpeechHead.vue'
 let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 let recognition = SpeechRecognition? new SpeechRecognition() : false
 
 export default {
-  props: {
+      props: {
     lang: {
       type: String,
       default: 'en-US'
+    },
+    text: {
+      type: [String, null],
+      required: true
     }
   },
   data () {
@@ -55,8 +61,7 @@ export default {
       speaking: false,
       toggle: false,
       runtimeTranscription: '',
-      sentences: [],
-      text: ""
+      sentences: []
     }
   },
   methods: {
@@ -67,7 +72,11 @@ export default {
     },
     endSpeechRecognition () {
       recognition.stop()
-      this.toggle = false;
+      this.toggle = false
+      this.$emit('speechend', {
+        sentences: this.sentences,
+        text: this.sentences.join('. ')
+      })
     },
     startSpeechRecognition () {
       if (!recognition) {
@@ -94,7 +103,7 @@ export default {
       recognition.addEventListener('end', () => {
         if (this.runtimeTranscription !== '') {
           this.sentences.push(this.capitalizeFirstLetter(this.runtimeTranscription))
-          this.text = this.sentences.join('. ')
+          EventBus.$emit('update:text', `${this.text}${this.sentences.slice(-1)[0]}. `)
         }
         this.runtimeTranscription = ''
         recognition.stop()
