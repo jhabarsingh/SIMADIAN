@@ -7,7 +7,7 @@
             <v-pagination
               v-model="page"
               class="my-4"
-              :length="15"
+              :length="count / 10"
             ></v-pagination>
           </v-container>
         </v-col>
@@ -19,6 +19,9 @@
 
 <script>
   export default {
+    props: [
+      'count',
+    ],
     data () {
       return {
         page: 1,

@@ -42,6 +42,7 @@
       </v-list-item-group>
     </v-list>
   </v-card>
+  <pagination :count=count />
   </div>
 </template>
 
@@ -49,13 +50,17 @@
 import axios from 'axios';
 
 import MultipleFileUpload from './MultipleFileUpload.vue';
+import Pagination from '../items/Pagination.vue';
+
   export default {
     components: {
         MultipleFileUpload,
+        Pagination
     },
     data: () => ({
       selected: [2],
       items: [],
+      count: 0,
     }),
 
     methods: {
@@ -69,6 +74,8 @@ import MultipleFileUpload from './MultipleFileUpload.vue';
       this.items = (item.data.results);
 
       this.items = this.items.filter(el => el.file != null);
+      this.count = item.data.count;
+
     }
   }
 </script>
