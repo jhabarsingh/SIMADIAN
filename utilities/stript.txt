@@ -1,0 +1,4 @@
+github: https://github.com/testdrivenio/django-stripe-checkout
+
+
+blog: https://testdriven.io/blog/django-stripe-tutorial/
