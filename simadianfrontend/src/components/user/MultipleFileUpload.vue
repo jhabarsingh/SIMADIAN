@@ -43,6 +43,8 @@ export default {
         case 'avi':
         case 'mpg':
         case 'mp4':
+        case 'mp3':
+        case '3gp':
           // etc
           return true;
       }
