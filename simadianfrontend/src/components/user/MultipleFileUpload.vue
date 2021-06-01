@@ -24,13 +24,51 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data: () => ({
     files: null
   }),
   methods: {
-    upload() {
-      console.log(this.files[0]);
+    getExtension(filename) {
+      var parts = filename.split('.');
+      return parts[parts.length - 1];
+    },
+
+    isVideo(filename) {
+      var ext = this.getExtension(filename);
+      switch (ext.toLowerCase()) {
+        case 'm4v':
+        case 'avi':
+        case 'mpg':
+        case 'mp4':
+          // etc
+          return true;
+      }
+      return false;
+    },
+    async upload() {
+      let url = this.$store.state.URL + "items/files/upload";
+      let token = localStorage.getItem("access");
+      console.log(this.files);
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': 'Bearer ' + token
+        }
+      }
+
+
+      for(let i=0; i<this.files.length; i++) {
+        let file = this.files[i];
+        if(!this.isVideo(file.name)) continue;
+        var formData = new FormData();
+        formData.append("file", file);
+        
+        let res = await axios.post(url, formData, config)
+        console.log(res);
+      }
     }
   }
 }

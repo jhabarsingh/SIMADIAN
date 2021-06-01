@@ -25,7 +25,7 @@
       >
         <template v-for="(item, index) in items">
           <v-list-item :key="item.title" @click="goTo(item.file)">
-            <template v-slot:default="{ active }">
+            <template >
               <v-list-item-content>
 
                 <v-list-item-subtitle v-text="item.file"></v-list-item-subtitle>
@@ -61,7 +61,7 @@ import MultipleFileUpload from './MultipleFileUpload.vue';
     methods: {
         goTo(url) {
             window.location.href = url;
-        }
+        },
     },
     async created() {
       let item = await axios.get(this.$store.state.URL + "items/files/")      
