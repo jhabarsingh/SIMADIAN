@@ -42,7 +42,24 @@
       </v-list-item-group>
     </v-list>
   </v-card>
-  <pagination :count=count />
+
+  <template>
+    <div class="text-center">
+      <v-container>
+        <v-row justify="center">
+          <v-col cols="8">
+            <v-container class="max-width">
+              <v-pagination
+                v-model="page"
+                class="my-4"
+                :length="Math.ceil(+count / 10)"
+              ></v-pagination>
+            </v-container>
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
+  </template>
   </div>
 </template>
 
@@ -50,19 +67,27 @@
 import axios from 'axios';
 
 import MultipleFileUpload from './MultipleFileUpload.vue';
-import Pagination from '../items/Pagination.vue';
 
   export default {
     components: {
-        MultipleFileUpload,
-        Pagination
+        MultipleFileUpload
     },
     data: () => ({
       selected: [2],
       items: [],
       count: 0,
+      page: 1,
     }),
-
+    watch: {
+      'page' (val) {
+        this.$router.push({
+          name: 'Videos', 
+          query: {
+            page: val
+          }
+        })
+      }
+    },
     methods: {
         goTo(url) {
           this.$router.push({
@@ -74,8 +99,14 @@ import Pagination from '../items/Pagination.vue';
         },
     },
     async created() {
-      let item = await axios.get(this.$store.state.URL + "items/files/")      
-
+      let item;
+      if(this.$route.query.page) {
+        item = await axios.get(this.$store.state.URL + "items/files/" + '?page=' + this.$route.query.page)
+        this.page = this.$route.query.page;
+      }
+      else {
+        item = await axios.get(this.$store.state.URL + "items/files/")      
+      }
       this.items = (item.data.results);
 
       this.items = this.items.filter(el => el.file != null);
