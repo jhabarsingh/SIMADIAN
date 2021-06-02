@@ -1,6 +1,7 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import UserSerializer, ProfileSerializer
 from rest_framework.pagination import PageNumberPagination
+from django.contrib.auth.hashers import make_password
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 from rest_framework.response import Response
@@ -49,6 +50,8 @@ class ProfileRetrieveUpdateDeleteApiView(APIView):
     def get(self, request, format=None):
         try:
             profile = Profile.objects.get(profile=request.user)
+            if serializers.cleaned_data.get("password"):
+                serializers["password"] = make_password(serializers.cleaned_data.get("password"))
             serializers = ProfileSerializer(profile)
             return Response(serializers.data)
         except Profile.DoesNotExist:
