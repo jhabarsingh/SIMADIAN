@@ -7,7 +7,7 @@
             <v-pagination
               v-model="page"
               class="my-4"
-              :length="count / 10"
+              :length="Math.ceil(+count / 10)"
             ></v-pagination>
           </v-container>
         </v-col>

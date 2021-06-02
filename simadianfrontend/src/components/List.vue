@@ -67,7 +67,7 @@
         { text: 'Sent', icon: 'mdi-star', route: 'sent' },
         { text: 'Update Profile', icon: 'mdi-cloud-upload', route: 'update-profile' },
         { text: 'Upload Item', icon: 'mdi-upload', route: 'upload-item' },
-        { text: 'My Files', icon: 'mdi-file', route: 'my-files' },
+        { text: 'Videos', icon: 'mdi-file', route: 'videos' },
       ],
     }),
     props: [

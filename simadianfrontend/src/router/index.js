@@ -80,14 +80,19 @@ const routes = [
     component: () => import('../views/UploadItems.vue')
   },
   {
-    path: '/my-files',
-    name: 'MyFiles',
+    path: '/videos',
+    name: 'Videos',
     component: () => import('../views/MyFiles.vue')
   },
   {
     path: '/test',
     name: 'Test',
     component: () => import('../components/others/Test.vue')
+  },
+  {
+    path: '/media-player',
+    name: 'MediaPlayer',
+    component: () => import('../views/MediaPlayer.vue')
   },
   {
     path: '*',

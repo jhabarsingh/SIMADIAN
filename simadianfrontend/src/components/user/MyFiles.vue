@@ -65,7 +65,12 @@ import Pagination from '../items/Pagination.vue';
 
     methods: {
         goTo(url) {
-            window.location.href = url;
+          this.$router.push({
+            name: 'MediaPlayer',
+            query: {
+              link: url
+            }
+          });
         },
     },
     async created() {
