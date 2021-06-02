@@ -22,7 +22,7 @@
                 :rules="nameRules"
                 label="Username"
                 required
-                disabled="true"
+                :disabled="true"
                 ></v-text-field>
 
                 <v-text-field
@@ -45,7 +45,7 @@
                 :rules="emailRules"
                 label="E-mail"
                 required
-                disabled="true"
+                :disabled="true"
                 ></v-text-field>
                 
 
@@ -72,7 +72,7 @@
                 class="mr-4"
                 @click="validate"
                 >
-                Validate
+                Update
                 </v-btn>
 
             </v-form>
@@ -121,33 +121,31 @@
       validate () {
         let a = this.$refs.form.validate()
         
+        let url = this.$store.state.URL + "users/user/";
+        let token = localStorage.getItem("access");
+        
         if(true) {
-         this.$store.dispatch('userRegister', {
+        let config = {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          }
+        }
+        axios.put(url, {
             username: this.username,
             first_name: this.firstname,
             last_name: this.lastname,
             date_of_birth: this.date_of_birth,
             email: this.email,
             password: this.password
-          })
-          
+          }, config)
           .then(res => {
-            this.$router.push("/login");
+            console.log(res);
+            window.location.reload;
           })
-          
           .catch(err => {
-            this.$store.commit('changeDialog', {
-              'heading': 'Instructions',
-              details: [
-                'username should not be blank',
-                'username and email should be unique',
-                'email should be valid',
-                'password should contain alphabet, number and punctuation',
-                'password shouldn\'t match with your name'
-              ]
-            })
-            this.$store.state.dialog = true;
-          })
+            console.log(err);
+         })
         }
       },
       handlePassword () {

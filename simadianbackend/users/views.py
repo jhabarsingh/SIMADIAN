@@ -50,8 +50,6 @@ class ProfileRetrieveUpdateDeleteApiView(APIView):
     def get(self, request, format=None):
         try:
             profile = Profile.objects.get(profile=request.user)
-            if serializers.cleaned_data.get("password"):
-                serializers["password"] = make_password(serializers.cleaned_data.get("password"))
             serializers = ProfileSerializer(profile)
             return Response(serializers.data)
         except Profile.DoesNotExist:
@@ -89,7 +87,10 @@ class UserRetrieveUpdateDeleteApiView(APIView):
             user = request.user
             serializers = UserSerializer(user, data=request.data, partial=True)
             if serializers.is_valid():
-                serializers.save()
+                password = serializers.initial_data.get("password")
+                if serializers.initial_data.get("password"):
+                    password = make_password(serializers.initial_data.get("password"))
+                serializers.save(password=password)
                 return Response(serializers.data)
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
         except Profile.DoesNotExist:
