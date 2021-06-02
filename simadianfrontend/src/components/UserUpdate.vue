@@ -22,6 +22,7 @@
                 :rules="nameRules"
                 label="Username"
                 required
+                disabled="true"
                 ></v-text-field>
 
                 <v-text-field
@@ -44,6 +45,7 @@
                 :rules="emailRules"
                 label="E-mail"
                 required
+                disabled="true"
                 ></v-text-field>
                 
 
@@ -81,6 +83,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   import DatePicker from './DatePicker.vue'
   import EventBus from './event-bus';
   import DialogAlert from './DialogAlert.vue'
@@ -159,6 +162,26 @@
       EventBus.$on('EVENT_NAME', function (payLoad) {
         this.date_of_birth = payLoad;
       });
+    },
+    async created() {
+      let url = this.$store.state.URL + "users/user/";
+      let token = localStorage.getItem("access");
+   
+      let config = {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      }
+            
+      let res = await axios.get(url, config)
+
+      res = res.data;
+      this.username = res.username;
+      this.firstname = res.first_name;
+      this.lastname = res.last_name;
+      this.email = res.email;
+      this.date_of_birth = res.date_of_birth;
+      
     }
   }
 </script>
