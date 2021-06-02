@@ -1,26 +1,34 @@
 <template>
-  <v-card class="text-center"
-    style="margin: 0px auto 10px auto;padding:10px;display:flex;justify-content:center;"
-    max-width="700px"
-  >
-    <v-file-input
-        multiple
-        label="Upload Files"
-        v-model="files"
-    ></v-file-input>
-    <v-btn
-        class="mx-2"
-        fab
-        dark
-        small
-        color="primary"
-        @click="upload"
+  <div>
+    <v-card class="text-center"
+      style="margin: 0px auto 10px auto;padding:10px;display:flex;justify-content:center;"
+      max-width="700px"
     >
-    <v-icon dark>
-      mdi-upload
-      </v-icon>
-    </v-btn>
-  </v-card>
+      <v-file-input
+          multiple
+          label="Upload Files"
+          v-model="files"
+      ></v-file-input>
+      <v-btn
+          class="mx-2"
+          fab
+          dark
+          small
+          color="primary"
+          @click="upload"
+      >
+      <v-icon dark>
+        mdi-upload
+        </v-icon>
+      </v-btn>
+    </v-card>
+    <v-progress-linear
+      indeterminate
+      color="yellow darken-2"
+      style="max-width:700px; margin:auto;"
+      v-if="show"
+    ></v-progress-linear>
+  </div>
 </template>
 
 <script>
@@ -28,7 +36,8 @@ import axios from 'axios';
 
 export default {
   data: () => ({
-    files: null
+    files: null,
+    show: false
   }),
   methods: {
     getExtension(filename) {
@@ -53,6 +62,7 @@ export default {
     async upload() {
       let url = this.$store.state.URL + "items/files/upload";
       let token = localStorage.getItem("access");
+      this.show = true;
       console.log(this.files);
       let config = {
         headers: {
@@ -71,6 +81,8 @@ export default {
         let res = await axios.post(url, formData, config)
         console.log(res);
       }
+
+      this.show = false;
     }
   }
 }
