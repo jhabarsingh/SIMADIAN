@@ -44,11 +44,9 @@
             style="display:flex;justify-content:flex-end;"
          >
              <v-btn
-            :loading="loading3"
-            :disabled="loading3"
             color="blue-grey"
             class="ma-2 white--text"
-            @click="loader = 'loading3'"
+            @click="loader = 'loading'"
             >
             Send
             <v-icon right dark>mdi-send</v-icon>
@@ -80,5 +78,11 @@
         }, 2000)
       },
     },
+    
+    created() {
+      if(this.$store.state.selectedItem == null) {
+        this.$router.push("/home");
+      }
+    }
   }
 </script>

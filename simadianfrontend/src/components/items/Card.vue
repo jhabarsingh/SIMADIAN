@@ -84,7 +84,7 @@
             style="z-index:0;"
             color="#036358"
           >
-            <v-btn @click="$router.push('/detail')">See more info</v-btn>
+            <v-btn @click="goTo">See more info</v-btn>
           </v-overlay>
         </v-fade-transition>
       </v-card>
@@ -105,10 +105,18 @@
       'cost_price',
       'sell_price',
       'writer',
-      'category'
+      'category',
+      'all'
     ],
     data: () => ({
       overlay: false,
     }),
+
+    methods: {
+      goTo() {
+        this.$store.state.selectedItem = this.all;
+        this.$router.push('/detail')
+      }
+    }
   }
 </script>

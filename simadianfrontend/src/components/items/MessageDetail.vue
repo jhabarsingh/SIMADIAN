@@ -33,7 +33,7 @@
         <v-list-item-content>
           <v-list-item-title>
             {{
-              this.$route.query.receiver 
+              this.$route.query.receiver
             }}
           </v-list-item-title>
         </v-list-item-content>
@@ -47,6 +47,6 @@
   export default {
     data: () => ({
       //
-    }),
+    })
   }
 </script>

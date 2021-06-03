@@ -20,6 +20,7 @@
               :writer="n.writer"
               :cost_price="n.cost_price"
               :sell_price="n.sell_price"
+              :all="n"
             />
 
         </v-col>
