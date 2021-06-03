@@ -6,9 +6,9 @@
   >
     <v-card-text
     >
-      <div>Send Message</div>
+      <div>Send Message To</div>
       <h3 class=" text--primary">
-        Jhabar Singh Bhati
+        {{ $store.state.selectedItem.seller.username }}
       </h3>
       <div class="text--primary">
         Please Don't Send Write Abusive Language
@@ -44,9 +44,9 @@
             style="display:flex;justify-content:flex-end;"
          >
              <v-btn
-            color="blue-grey"
-            class="ma-2 white--text"
-            @click="loader = 'loading'"
+              color="blue-grey"
+              class="ma-2 white--text"
+              @click="sendMessage"
             >
             Send
             <v-icon right dark>mdi-send</v-icon>
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   export default {
     data: () => ({
       message: 'Hey!',
@@ -77,6 +78,32 @@
           this.message = 'You\'ve clicked me!'
         }, 2000)
       },
+      sendMessage () {
+        let url = this.$store.state.URL + "items/message/create/";
+        console.log(this.$store.state.selectedItem.seller.id)
+        let data = {
+          receiver: this.$store.state.selectedItem.seller.id,
+          content: this.message 
+        }
+        
+        let token = localStorage.getItem("access");
+
+        let config = {
+          headers: {
+              'Authorization': 'Bearer ' + token
+          }
+        }
+
+        if(this.message.length != 0) {
+          axios.post(url, data, config)
+          .then(res => {
+            this.$router.push("/sent");
+          })
+          .catch(err => {
+             // ERROR
+          })
+        }
+      }
     },
     
     created() {
