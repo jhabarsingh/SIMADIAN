@@ -1,5 +1,4 @@
 ## Tasks
-3. Home Page [easy if file done]
-4. Message Component
-5. Inbox, Sent Component
-
+1. Item Detail Page
+2. Message Sender Component
+3. Add Voice To Text in Message Sender COmponent
