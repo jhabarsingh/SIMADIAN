@@ -37,6 +37,15 @@
                 required
                 ></v-text-field>
 
+                 <v-select
+                  v-model="category"
+                  :items="categories"
+                  chips
+                  label="Genre"
+                  multiple
+                  solo
+                ></v-select>
+
 
                 <v-file-input
                   label="Thumbnail 1"
@@ -148,7 +157,7 @@
   import cities from './cities.js';
   import states from './states.js';
   import axios from 'axios';
-  
+
   export default {
     components: {
       DatePicker,
@@ -158,7 +167,7 @@
       select: null,
       valid: true,
 
-      category: [],
+      categories: [],
       states: [],
       countries: [
         "India"
@@ -175,6 +184,7 @@
       cost_price: null,
       sell_price: null,
       mobile_no: null,
+      category: [],
       country: "India",
       state: null,
       city: null,
@@ -223,10 +233,15 @@
             }
             let url = this.$store.state.URL + "items/create/"
             var formData = new FormData();
-            
+            console.log(this.category);
+
+            for(let i=0; i<this.category.length; i++) {
+              formData.append("category", this.category[i]);
+            }
+
             let data = {
               name: this.name,
-              description: this.discription,
+              description: this.description,
               writer: this.writer,
               thumbnail1: this.thumbnail1,
               thumbnail2: this.thumbnail2,
@@ -243,10 +258,10 @@
             for(let i in data) {
               formData.append(i, data[i]);
             }
+            
 
             axios.post(url, formData, config)
               .then(res => {
-                console.log(res);
                 window.location.reload;
               })
               .then(res => {
@@ -280,6 +295,17 @@
     created () {
       this.states  = states.sort();
       this.cities = cities.sort();
+
+      axios.get(this.$store.state.URL + "items/category/")
+      .then(res => {
+        let data = res.data;
+        for(let i in data) {
+          this.categories.push(data[i].category);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
     }
   }
 </script>
