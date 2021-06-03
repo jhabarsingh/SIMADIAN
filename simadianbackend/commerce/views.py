@@ -131,8 +131,9 @@ class MessageCreateApiView(APIView):
 
     def post(self, request):
         try:
+            print(request.data)
             sender = request.user
-            receiver = User.objects.get(username=request.data.get("receiver"))
+            receiver = User.objects.get(id=request.data.get("receiver"))
             content = request.data.get("content")
 
             if receiver == sender:
@@ -169,7 +170,7 @@ class MessagesSentApiView(generics.GenericAPIView,
         Sent By The Authenticated  user.
         """
         user = self.request.user
-        return Messages.objects.all().filter(sender=user)
+        return Messages.objects.all().filter(sender=user).order_by("-id")
 
 
 class MessagesReceivedApiView(generics.GenericAPIView,
@@ -190,7 +191,7 @@ class MessagesReceivedApiView(generics.GenericAPIView,
         Sent By The Authenticated  user.
         """
         user = self.request.user
-        return Messages.objects.all().filter(receiver=user)
+        return Messages.objects.all().filter(receiver=user).order_by("-id")
 
 
 class MessageDeleteApiView(APIView):
