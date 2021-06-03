@@ -27,7 +27,7 @@
               v-for="(val, i) in category"
               :key="i"
             >
-              <v-chip>{{ val }}</v-chip>
+              <v-chip>{{ val.category }}</v-chip>
 
             </v-chip-group>
         </v-card-title>
