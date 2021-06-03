@@ -69,7 +69,7 @@
   import SpeechToText from './SpeechToText.vue';
   export default {
     data: () => ({
-      message: 'Hey!',
+      message: 'Hey! ',
       loading: false,
     }),
     components: {
@@ -78,8 +78,8 @@
 
     watch: {
       '$store.state.message' (val) {
-        this.message = val;
-      }
+        this.message += val;
+      },
     },
 
     methods: {
