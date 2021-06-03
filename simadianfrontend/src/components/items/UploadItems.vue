@@ -265,7 +265,7 @@
                 window.location.reload;
               })
               .then(res => {
-                console.log(res);
+                this.$router.push("/home");
               })
               .catch(err => {
                 console.log(err);
