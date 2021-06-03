@@ -2,11 +2,12 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import ItemSerializer, CategorySerializer, MassUploadFileSerializer, MessageSerializer, MassUploadSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from .permissions import IsSuperUser, IsOwner
 from django.contrib.auth import get_user_model
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, serializers
 from rest_framework import mixins
 from .models import Item, Category, MassUpload, Messages
 from django.http import Http404
@@ -15,15 +16,16 @@ User = get_user_model()
 
 
 class ItemListApiView(generics.GenericAPIView,
-                       mixins.ListModelMixin):
+                      mixins.ListModelMixin):
     '''
     Return all the users avaialble if  their account
     filters are available
     '''
-    queryset = Item.objects.all()
+    queryset = Item.objects.all().order_by("-id")
     serializer_class = ItemSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category', 'name', 'sold', 'country', 'city', 'state', 'landmark']
+    filterset_fields = ['category', 'name', 'sold',
+                        'country', 'city', 'state', 'landmark']
     authentication_classes = []
 
     def get(self, request, *args, **kwargs):
@@ -32,7 +34,7 @@ class ItemListApiView(generics.GenericAPIView,
 
 
 class CategoryListApiView(generics.GenericAPIView,
-                       mixins.ListModelMixin):
+                          mixins.ListModelMixin):
     '''
     Return all the category avaialble 
     '''
@@ -61,7 +63,7 @@ class ItemCreateApiView(APIView):
     '''
 
     def post(self, request):
-    	# try:
+        try:
             user = request.user
             print(request.data)
             request.data._mutable = True
@@ -71,8 +73,8 @@ class ItemCreateApiView(APIView):
                 serializers.save()
                 return Response(serializers.data)
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-    	# except:
-    	# 	raise Http404
+        except:
+            raise Http404
 
 
 class ItemUpdateDeleteApiView(APIView):
@@ -80,7 +82,7 @@ class ItemUpdateDeleteApiView(APIView):
     CRUD on Item model
     '''
     permission_classes = [IsAuthenticated]
-  
+
     def put(self, request, format=None):
         try:
             id = request.data.get("id")
@@ -91,7 +93,7 @@ class ItemUpdateDeleteApiView(APIView):
                 return Response(serializers.data)
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
         except:
-        	raise Http404
+            raise Http404
 
     def delete(self, request, format=None):
         try:
@@ -101,14 +103,15 @@ class ItemUpdateDeleteApiView(APIView):
             item.delete()
             return Response(serializers.data)
         except:
-        	raise Http404
+            raise Http404
+
 
 class CategoryDeleteApiView(APIView):
     '''
     CRUD on Item model
     '''
     permission_classes = [IsAuthenticated]
-  
+
     def delete(self, request, format=None):
         try:
             id = request.data.get("category")
@@ -117,7 +120,8 @@ class CategoryDeleteApiView(APIView):
             category.delete()
             return Response(serializers.data)
         except:
-        	raise Http404
+            raise Http404
+
 
 class MessageCreateApiView(APIView):
     '''
@@ -135,7 +139,8 @@ class MessageCreateApiView(APIView):
                 return Response({
                     'message': 'can\'t message yourself'
                 })
-            message = Messages(sender=sender, receiver=receiver, content=content)
+            message = Messages(
+                sender=sender, receiver=receiver, content=content)
             try:
                 message.save()
                 return Response(request.data)
@@ -145,37 +150,47 @@ class MessageCreateApiView(APIView):
         except:
             raise Http404
 
-class MessagesSentApiView(APIView):
+
+class MessagesSentApiView(generics.GenericAPIView,
+                      mixins.ListModelMixin):
     '''
     List Messages sent
     '''
     permission_classes = [IsAuthenticated]
+    serializer_class = MessageSerializer
 
-    def get(self, request):
-        try:
-            sender = request.user
-            messages = Messages.objects.all().filter(sender=sender)
+    def get(self, request, *args, **kwargs):
+        # List out the Item with given filter fields
+        return self.list(request, *args, **kwargs)
 
-            serializer = MessageSerializer(messages, many=True)
-            return Response(serializer.data)
-        except:
-            raise Http404
+    def get_queryset(self):
+        """
+        This view should return a list of all the Messages
+        Sent By The Authenticated  user.
+        """
+        user = self.request.user
+        return Messages.objects.all().filter(sender=user)
 
-class MessagesReceivedApiView(APIView):
+
+class MessagesReceivedApiView(generics.GenericAPIView,
+                      mixins.ListModelMixin):
     '''
     List Messages sent
     '''
     permission_classes = [IsAuthenticated]
+    serializer_class = MessageSerializer
 
-    def get(self, request):
-        try:
-            receiver = request.user
-            messages = Messages.objects.all().filter(receiver=receiver)
+    def get(self, request, *args, **kwargs):
+        # List out the Item with given filter fields
+        return self.list(request, *args, **kwargs)
 
-            serializer = MessageSerializer(messages, many=True)
-            return Response(serializer.data)
-        except:
-            raise Http404
+    def get_queryset(self):
+        """
+        This view should return a list of all the Messages
+        Sent By The Authenticated  user.
+        """
+        user = self.request.user
+        return Messages.objects.all().filter(receiver=user)
 
 
 class MessageDeleteApiView(APIView):
@@ -183,7 +198,7 @@ class MessageDeleteApiView(APIView):
     CRUD on Messages model
     '''
     permission_classes = [IsAuthenticated]
-  
+
     def delete(self, request, format=None):
         try:
             id = request.data.get("message_id")
@@ -192,9 +207,9 @@ class MessageDeleteApiView(APIView):
             if(category):
                 if(category.sender == request.user):
                     category.delete()
-            
+
                     return Response(serializers.data)
-            
+
             return Response({'message': 'unauthorized'})
         except:
             raise Http404
@@ -221,7 +236,7 @@ class MassFiles(APIView):
 
 
 class MassUploadListApiView(generics.GenericAPIView,
-                       mixins.ListModelMixin):
+                            mixins.ListModelMixin):
     '''
     Return Mass Upload File List Api View
     '''
