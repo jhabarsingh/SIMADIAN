@@ -84,8 +84,10 @@ import MultipleFileUpload from './MultipleFileUpload.vue';
         this.$router.push({
           name: 'Videos', 
           query: {
-            page: val
+            page: +val
           }
+        }).catch(err => {
+
         })
       }
     },
@@ -103,7 +105,7 @@ import MultipleFileUpload from './MultipleFileUpload.vue';
       let item;
       if(this.$route.query.page) {
         item = await axios.get(this.$store.state.URL + "items/files/" + '?page=' + this.$route.query.page)
-        this.page = this.$route.query.page;
+        this.page = +this.$route.query.page;
       }
       else {
         item = await axios.get(this.$store.state.URL + "items/files/")      
