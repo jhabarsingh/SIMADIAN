@@ -66,7 +66,7 @@
         { text: 'Inbox', icon: 'mdi-history', route: 'received' },
         { text: 'Sent', icon: 'mdi-star', route: 'sent' },
         { text: 'Update Profile', icon: 'mdi-cloud-upload', route: 'update-profile' },
-        { text: 'Upload Item', icon: 'mdi-upload', route: 'upload-item' },
+        { text: 'Upload Books', icon: 'mdi-upload', route: 'upload-item' },
         { text: 'Videos', icon: 'mdi-file', route: 'videos' },
       ],
     }),

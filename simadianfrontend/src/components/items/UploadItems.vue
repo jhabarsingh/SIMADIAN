@@ -41,8 +41,8 @@
                 <v-file-input
                   label="Thumbnail 1"
                   @change="Preview_image1"
-                  filled
                   v-model="thumbnail1"
+                  ref="image1"
                   prepend-icon="mdi-camera"
                 ></v-file-input>
 
@@ -50,7 +50,6 @@
                   v-if="thumbnail1"
                   :src="url1"
                   style="margin:20px auto; width:400px;"
-                  :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
                   aspect-ratio="1"
                   class="grey lighten-2"
                 >
@@ -59,15 +58,14 @@
                 <v-file-input
                   label="Thumbnail 2"
                   @change="Preview_image2"
-                  filled
                   v-model="thumbnail2"
+                  ref="image2"
                   prepend-icon="mdi-camera"
                 ></v-file-input>
 
                 <v-img
                   v-if="thumbnail2"
                   :src="url2"
-                  :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
                   style="margin:20px auto; width:400px;"
                   aspect-ratio="1"
                   class="grey lighten-2"
@@ -97,6 +95,7 @@
                   label="Country"
                   v-model="country"
                   solo
+                  :disabled="true"
                 ></v-select>
 
                 <v-select
@@ -119,12 +118,12 @@
                 required
                 ></v-text-field>
 
-                <v-select
-                  :items="educational_institutions"
-                  label="Education Institute"
-                  v-model="educational_institutions"
-                  solo
-                ></v-select>
+                <v-text-field
+                v-model="educational_institution"
+                label="Education Institution"
+                required
+                ></v-text-field>
+
                 
 
                 <v-btn
@@ -145,8 +144,10 @@
 
 <script>
   import DatePicker from '../DatePicker.vue'
-  import EventBus from '../event-bus';
   import DialogAlert from '../DialogAlert.vue'
+  import cities from './cities.js';
+  import states from './states.js';
+
   export default {
     components: {
       DatePicker,
@@ -157,6 +158,11 @@
       valid: true,
 
       category: [],
+      states: [],
+      countries: [
+        "India"
+      ],
+      cities: [],
       name: null,
       url1: null,
       url2: null,
@@ -167,7 +173,7 @@
       cost_price: null,
       sell_price: null,
       mobile_no: null,
-      country: null,
+      country: "India",
       state: null,
       city: null,
       landmark: null,
@@ -180,61 +186,57 @@
 
     methods: {
       Preview_image1() {
+
+        if(this.thumbnail1 == null) return;
+        if(this.isImage(this.thumbnail1.name) == false) {
+            this.$refs.image1.reset();
+            this.thumbnail1 = null;
+            return;
+        }
         this.url1 = URL.createObjectURL(this.thumbnail1)
       },
       Preview_image2() {
+
+        if(this.thumbnail2 == null) return;
+        if(this.isImage(this.thumbnail2.name) == false) {
+            this.$refs.image2.reset();
+            this.thumbnail2 = null;
+            console.log(this.thumbnail1)
+            return;
+        }
         this.url2 = URL.createObjectURL(this.thumbnail2)
       },
-      formatDate (date) {
-        if (!date) return null
 
-        const [year, month, day] = date.split('-')
-        return `${year}-${month}-${day}`
-      },
       validate () {
         let a = this.$refs.form.validate()
         
         if(true) {
-         this.$store.dispatch('userRegister', {
-            username: this.username,
-            first_name: this.firstname,
-            last_name: this.lastname,
-            date_of_birth: this.date_of_birth,
-            email: this.email,
-            password: this.password
-          })
-          
-          .then(res => {
-            this.$router.push("/login");
-          })
-          
-          .catch(err => {
-            this.$store.commit('changeDialog', {
-              'heading': 'Instructions',
-              details: [
-                'username should not be blank',
-                'username and email should be unique',
-                'email should be valid',
-                'password should contain alphabet, number and punctuation',
-                'password shouldn\'t match with your name'
-              ]
-            })
-            this.$store.state.dialog = true;
-          })
+         // POST Request
         }
       },
-      handlePassword () {
-        if(this.password != this.confirm_password)  {
-          return 'Password mismatch'
+      getExtension(filename) {
+        var parts = filename.split('.');
+        return parts[parts.length - 1];
+      },
+
+      isImage(filename) {
+        var ext = this.getExtension(filename);
+        switch (ext.toLowerCase()) {
+          case 'jpg':
+          case 'jpeg':
+          case 'png':
+          case 'svg':
+          case 'gif':
+            // etc
+            return true;
+          }
+          return false;
         }
-        return true;
-      }
     },
 
-    mounted () {
-      EventBus.$on('EVENT_NAME', function (payLoad) {
-        this.date_of_birth = payLoad;
-      });
+    created () {
+      this.states  = states.sort();
+      this.cities = cities.sort();
     }
   }
 </script>
