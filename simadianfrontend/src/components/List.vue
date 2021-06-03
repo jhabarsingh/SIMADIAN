@@ -63,7 +63,7 @@
       selectedItem: 0,
       items: [
         { text: 'Home', icon: 'mdi-home', route: 'home' },
-        { text: 'Inbox', icon: 'mdi-history', route: 'received' },
+        { text: 'Received', icon: 'mdi-history', route: 'received' },
         { text: 'Sent', icon: 'mdi-star', route: 'sent' },
         { text: 'Update Profile', icon: 'mdi-cloud-upload', route: 'update-profile' },
         { text: 'Upload Books', icon: 'mdi-upload', route: 'upload-item' },

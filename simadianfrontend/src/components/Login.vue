@@ -76,6 +76,7 @@ import DialogAlert from './DialogAlert.vue'
           })
           .then(res => {
             this.$store.state.isLoggedin = true;
+            this.$store.state.username = this.email
             this.$router.push("/home");
           })
           .catch(err => {

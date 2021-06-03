@@ -17,6 +17,7 @@ export default new Vuex.Store({
         "Hi"
       ]
     },
+    username: "SIMADIAN",
     selectedItem: null,
     isLoggedin: (localStorage.getItem('access') ? true: false)
   },

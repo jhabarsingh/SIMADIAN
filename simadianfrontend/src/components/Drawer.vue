@@ -11,7 +11,7 @@
             color="pink"
             dot
           >
-            SIMADIAN
+            {{ $store.state.username }}
           </v-badge>
         </v-tab>
       </v-toolbar-title>
