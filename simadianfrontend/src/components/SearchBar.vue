@@ -789,12 +789,26 @@
         }, 500)
       },
       goTo () {
-        localStorage.setItem("city", this.select);
-        
+
         if(this.select == null) {
-          localStorage.removeItem("city");
+          this.$router.push({
+            name: 'HomeLogin',
+          }).catch(err => {
+                // ERROR
+          })  
+          return;
         }
-        window.location.reload();
+
+
+        this.$router.push({
+          name: 'HomeLogin',
+          query: {
+            city: this.select
+          }
+        }).catch(err => {
+              // ERROR
+        })
+
       }
       
     },
