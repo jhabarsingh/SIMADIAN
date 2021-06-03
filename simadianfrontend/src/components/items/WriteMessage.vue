@@ -8,7 +8,7 @@
     >
       <div>Send Message To</div>
       <h3 class=" text--primary">
-        {{ $store.state.selectedItem.seller.username }}
+        {{ $store.state.selectedItem.seller.email }}
       </h3>
       <div class="text--primary">
         Please Don't Send Write Abusive Language
@@ -121,7 +121,10 @@
     
     created() {
       if(this.$store.state.selectedItem == null) {
-        this.$router.push("/home");
+      this.$router.push("/home");
+      }
+      if(localStorage.getItem("username") == this.$store.state.selectedItem.seller.email) {
+          this.$router.push("/home");
       }
     }
   }
