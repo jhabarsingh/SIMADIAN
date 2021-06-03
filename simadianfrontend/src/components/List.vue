@@ -41,6 +41,7 @@
             v-for="(item, i) in items"
             :key="i"
             @click="goTo(item.route)"
+            :disabled="item.disabled"
           >
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
@@ -62,12 +63,12 @@
     data: () => ({
       selectedItem: 0,
       items: [
-        { text: 'Home', icon: 'mdi-home', route: 'home' },
-        { text: 'Received', icon: 'mdi-history', route: 'received' },
-        { text: 'Sent', icon: 'mdi-star', route: 'sent' },
-        { text: 'Update Profile', icon: 'mdi-cloud-upload', route: 'update-profile' },
-        { text: 'Upload Books', icon: 'mdi-upload', route: 'upload-item' },
-        { text: 'Videos', icon: 'mdi-file', route: 'videos' },
+        { text: 'Home', icon: 'mdi-home', route: 'home' , disabled: false},
+        { text: 'Received', icon: 'mdi-history', route: 'received', disabled: (localStorage.getItem("access") ? 0: 1) },
+        { text: 'Sent', icon: 'mdi-star', route: 'sent', disabled: (localStorage.getItem("access") ? 0: 1) },
+        { text: 'Update Profile', icon: 'mdi-cloud-upload', route: 'update-profile', disabled: (localStorage.getItem("access") ? 0: 1) },
+        { text: 'Upload Books', icon: 'mdi-upload', route: 'upload-item', disabled: (localStorage.getItem("access") ? 0: 1) },
+        { text: 'Videos', icon: 'mdi-file', route: 'videos' , disabled: false},
       ],
     }),
     props: [
@@ -79,6 +80,6 @@
         this.$store.state.drawer = !this.$store.state.drawer
         this.$router.push(`/${url}`)
       }
-    }
+    },
   }
 </script>

@@ -50,6 +50,8 @@
             localStorage.clear();
             this.$store.state.isLoggedin = false;
             this.$store.state.dialog = false;
+            this.$store.state.username = "SIMADIAN";
+            
             this.$router.push('/home')
         }
     }
