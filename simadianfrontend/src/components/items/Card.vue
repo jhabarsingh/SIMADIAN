@@ -7,9 +7,10 @@
         <div
           style="height:250px;overflow:hidden;"
         >
-          <Carousal
-              :slides="thumbnail"
-          />
+          <v-img 
+            style="height:300px;"
+            :src="thumbnail[0]"
+          ></v-img>
         </div>
 
         <v-card-text>
@@ -33,8 +34,6 @@
 
          <v-divider />
 
-         <v-list-item>
-        </v-list-item>
 
         <v-list-item>
 

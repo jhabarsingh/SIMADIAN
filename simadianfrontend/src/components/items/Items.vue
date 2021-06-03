@@ -86,7 +86,7 @@ export default {
       
       if(this.$route.query.page) {
         item = await axios.get(this.$store.state.URL + "items/" + '?page=' + this.$route.query.page)
-        this.page = this.$route.query.page;
+        this.page = +this.$route.query.page;
       }
       else {
         item = await axios.get(this.$store.state.URL + "items/")      

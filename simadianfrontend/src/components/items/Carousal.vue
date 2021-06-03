@@ -34,7 +34,7 @@
 <script>
   export default {
     props: [
-        'slides'
+        'slides' // array of image source
     ],
     data () {
       return {
