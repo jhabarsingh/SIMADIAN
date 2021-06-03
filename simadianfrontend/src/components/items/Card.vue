@@ -4,27 +4,80 @@
       <v-card
         class="mx-auto"
       >
-        <v-img src="https://cdn.vuetifyjs.com/images/cards/forest-art.jpg"></v-img>
+        <div
+          style="height:250px;overflow:hidden;"
+        >
+          <Carousal
+              :slides="thumbnail"
+          />
+        </div>
 
         <v-card-text>
-          <h2 class="title primary--text">
-            Magento Forests
+          <h2 class="title primary--text"
+            style="text-transform: Capitalize"
+          >
+            {{ title }}
           </h2>
-          Travel to the best outdoor experience on planet Earth. A vacation you will never forget!
+            {{ description }}
         </v-card-text>
 
         <v-card-title>
-          <v-rating
-            :value="4"
-            dense
-            color="orange"
-            background-color="orange"
-            hover
-            class="mr-2"
-          ></v-rating>
-          <span class="primary--text subtitle-2">64 Reviews</span>
+            <v-chip-group
+              v-for="(val, i) in category"
+              :key="i"
+            >
+              <v-chip>{{ val }}</v-chip>
+
+            </v-chip-group>
         </v-card-title>
 
+         <v-divider />
+
+         <v-list-item>
+        </v-list-item>
+
+        <v-list-item>
+
+          <v-list-item-content>
+            <v-list-item-title>Writer Name</v-list-item-title>
+            <v-list-item-subtitle>
+                    <v-chip
+                      color="primary"
+                      small
+                    >
+                      {{ writer }}
+                    </v-chip>
+
+            </v-list-item-subtitle>
+          </v-list-item-content>
+         
+          <v-list-item-content>
+            <v-list-item-title>Cost Price</v-list-item-title>
+            <v-list-item-subtitle>
+                    <v-chip
+                      color="primary"
+                      small
+                    >
+                      {{ cost_price }} INR
+                    </v-chip>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+         
+          <v-list-item-content>
+            <v-list-item-title>Sell Price</v-list-item-title>
+            <v-list-item-subtitle>
+                      <v-chip
+                        color="primary"
+                        small
+                      >
+                        {{ sell_price }} INR
+                      </v-chip>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        
+        </v-list-item>
+
+        
         <v-fade-transition>
           <v-overlay
             v-if="hover"
@@ -41,7 +94,20 @@
 </template>
 
 <script>
+  import Carousal from './Carousal.vue'
   export default {
+    components: {
+      Carousal
+    },
+    props: [
+      'title',
+      'description',
+      'thumbnail',
+      'cost_price',
+      'sell_price',
+      'writer',
+      'category'
+    ],
     data: () => ({
       overlay: false,
     }),
