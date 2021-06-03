@@ -24,7 +24,7 @@ class UsersListApiView(generics.GenericAPIView,
     queryset = get_user_model().objects.all().order_by('username')
     serializer_class = UserSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['first_name', 'email', 'username']
+    filterset_fields = ['first_name', 'email', 'username', 'id']
     ordering = ['username']
     paginate_by = 20
     authentication_classes = []
