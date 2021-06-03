@@ -32,30 +32,6 @@ class Item(models.Model):
 	landmark = models.TextField(blank=True, null=True)
 	educational_institution = models.CharField(max_length=255, blank=True, null=True)
 
-	def save(self, *args, **kwargs):
-		"""
-		method to make thumnail of uploaded file
-		in the memory itself
-		"""
-		if self.thumbnail1:
-			im = Img.open(self.thumbnail1)
-			im.thumbnail((200,200), Img.ANTIALIAS)
-			output = BytesIO()
-			im.save(output, format='JPEG')
-			output.seek(0)
-			self.thumbnail1 = InMemoryUploadedFile(output,'ImageField', "%s.jpg"\
-				%self.thumbnail1.name, 'thumbnail/jpeg', output.__sizeof__(), None)
-
-		if self.thumbnail2:
-			im = Img.open(self.thumbnail2)
-			im.thumbnail((200,200), Img.ANTIALIAS)
-			output = BytesIO()
-			im.save(output, format='JPEG')
-			output.seek(0)
-			self.thumbnail = InMemoryUploadedFile(output,'ImageField', "%s.jpg"\
-				%self.thumbnail2.name, 'thumbnail/jpeg', output.__sizeof__(), None)
-		super(Item, self).save(*args, **kwargs)
-
 
 class Messages(models.Model):
 	'''

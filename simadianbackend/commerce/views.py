@@ -61,17 +61,18 @@ class ItemCreateApiView(APIView):
     '''
 
     def post(self, request):
-    	try:
-        	user = request.user
-        	print(request.data)
-        	serializers = ItemSerializer(data=request.data, partial=True)
-        	serializers.initial_data["seller"] = user.pk
-        	if serializers.is_valid():
-        		serializers.save()
-        		return Response(serializers.data)
-        	return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-    	except:
-    		raise Http404
+    	# try:
+            user = request.user
+            print(request.data)
+            request.data._mutable = True
+            serializers = ItemSerializer(data=request.data, partial=True)
+            serializers.initial_data["seller"] = user.pk
+            if serializers.is_valid():
+                serializers.save()
+                return Response(serializers.data)
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    	# except:
+    	# 	raise Http404
 
 
 class ItemUpdateDeleteApiView(APIView):
