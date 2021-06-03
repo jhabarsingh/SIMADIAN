@@ -4,7 +4,6 @@
     color="primary"
     style="margin-bottom:10px;"
   >
-    <v-toolbar-title>City Selection</v-toolbar-title>
     <v-autocomplete
       v-model="select"
       :loading="loading"
@@ -15,11 +14,23 @@
       flat
       hide-no-data
       hide-details
-      label="What state are you from?"
+      label="Select Your City"
       solo-inverted
     ></v-autocomplete>
     <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
+       
+       <v-btn
+          class="mx-2"
+          fab
+          dark
+          small
+          color="warning"
+        >
+          <v-icon dark>
+            mdi-send
+          </v-icon>
+        </v-btn>
+        
     </v-btn>
   </v-toolbar>
 </template>
