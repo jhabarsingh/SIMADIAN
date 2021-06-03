@@ -147,7 +147,8 @@
   import DialogAlert from '../DialogAlert.vue'
   import cities from './cities.js';
   import states from './states.js';
-
+  import axios from 'axios';
+  
   export default {
     components: {
       DatePicker,
@@ -163,9 +164,10 @@
         "India"
       ],
       cities: [],
-      name: null,
       url1: null,
       url2: null,
+
+      name: null,
       description: null,
       writer: null,
       thumbnail1: null,
@@ -211,7 +213,48 @@
         let a = this.$refs.form.validate()
         
         if(true) {
-         // POST Request
+            let token = localStorage.getItem("access");
+
+            let config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Bearer ' + token
+              }
+            }
+            let url = this.$store.state.URL + "items/create/"
+            var formData = new FormData();
+            
+            let data = {
+              name: this.name,
+              description: this.discription,
+              writer: this.writer,
+              thumbnail1: this.thumbnail1,
+              thumbnail2: this.thumbnail2,
+              cost_price: this.cost_price,
+              sell_price: this.sell_price,
+              mobile_no: this.mobile_no,
+              country: this.country,
+              state: this.state,
+              city: this.city,
+              landmark: this.landmark,
+              educational_institution: this.educational_institution
+            }
+
+            for(let i in data) {
+              formData.append(i, data[i]);
+            }
+
+            axios.post(url, formData, config)
+              .then(res => {
+                console.log(res);
+                window.location.reload;
+              })
+              .then(res => {
+                console.log(res);
+              })
+              .catch(err => {
+                console.log(err);
+            })
         }
       },
       getExtension(filename) {
