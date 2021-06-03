@@ -75,6 +75,8 @@ export default {
           query: {
             page: val
           }
+        }).catch(err => {
+
         })
       }
     },
@@ -84,8 +86,19 @@ export default {
     async created() {
       let item;
       
+      let city = null;
+      if(localStorage.getItem("city")) {
+        city = localStorage.getItem("city");
+      }
+
       if(this.$route.query.page) {
-        item = await axios.get(this.$store.state.URL + "items/" + '?page=' + this.$route.query.page)
+        let url = this.$store.state.URL + "items/" + '?page=' + this.$route.query.page;
+        if(city != null) {
+          url += ("&city=" +  city);
+        }
+        console.log(url);
+
+        item = await axios.get(url)
         this.page = +this.$route.query.page;
       }
       else {

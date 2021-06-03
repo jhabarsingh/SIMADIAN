@@ -3,6 +3,7 @@
     dark
     color="primary"
     style="margin-bottom:10px;"
+    rounded
   >
     <v-autocomplete
       v-model="select"
@@ -24,7 +25,9 @@
           fab
           dark
           small
-          color="warning"
+          elevation="10"
+          color="primary"
+          @click="goTo"
         >
           <v-icon dark>
             mdi-send
@@ -785,6 +788,15 @@
           this.loading = false
         }, 500)
       },
+      goTo () {
+        localStorage.setItem("city", this.select);
+        
+        if(this.select == null) {
+          localStorage.removeItem("city");
+        }
+        window.location.reload();
+      }
+      
     },
   }
 </script>
