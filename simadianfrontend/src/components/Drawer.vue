@@ -96,7 +96,9 @@
       
     }),
     created() {
-      console.log(window.location.pathname)
+      if(localStorage.getItem("username")) {
+        this.$store.state.username = localStorage.getItem("username");
+      }
     }
   }
 </script>

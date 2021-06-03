@@ -62,6 +62,7 @@ export default {
     clearSentences () {
       this.sentences = [];
       this.text = "";
+      this.$store.state.message = "";
     },
     checkCompatibility () {
       if (!recognition) {
