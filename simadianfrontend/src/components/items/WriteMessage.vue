@@ -41,8 +41,11 @@
           </v-textarea>
 
          <div
-            style="display:flex;justify-content:flex-end;"
+            style="display:flex;justify-content:space-between;"
          >
+            <SpeechToText 
+            />
+
              <v-btn
               color="blue-grey"
               class="ma-2 white--text"
@@ -63,11 +66,21 @@
 
 <script>
   import axios from 'axios';
+  import SpeechToText from './SpeechToText.vue';
   export default {
     data: () => ({
       message: 'Hey!',
       loading: false,
     }),
+    components: {
+      SpeechToText
+    },
+
+    watch: {
+      '$store.state.message' (val) {
+        this.message = val;
+      }
+    },
 
     methods: {
       clickMe () {

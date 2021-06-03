@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import WriteMessage from './WriteMessage.vue'
+import WriteMessage from './WriteMessage.vue';
 
 export default {
   data: () => ({
 
   }),
   components: {
-    WriteMessage
+    WriteMessage,
   },
 }
 

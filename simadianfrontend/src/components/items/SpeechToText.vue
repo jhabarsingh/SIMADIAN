@@ -1,11 +1,12 @@
 <template>
 <div
+  style="margin-top:5px"
 >   
     <v-card
         max-width="150px"
     >
                 <div
-                  style="padding:0px 5px;display:flex;justify-content:space-around;"
+                  style="padding:1px 7px;display:flex;justify-content:space-around;"
                 >
                   <v-btn
                     dark
