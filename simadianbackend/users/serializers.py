@@ -5,6 +5,7 @@ from .models import MyUser, Profile
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyUser
+        depth = 2
         fields = (
             'id',
             'username',

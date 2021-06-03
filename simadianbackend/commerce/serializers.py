@@ -4,6 +4,7 @@ from .models import Item, Category, Messages, MassUpload
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
+        depth = 2
         fields = (
         	'id',
             'seller',
