@@ -121,7 +121,7 @@
     
     created() {
       if(this.$store.state.selectedItem == null) {
-      this.$router.push("/home");
+        this.$router.push("/home");
       }
       if(localStorage.getItem("username") == this.$store.state.selectedItem.seller.email) {
           this.$router.push("/home");

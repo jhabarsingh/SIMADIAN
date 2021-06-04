@@ -1,5 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from .serializers import ItemSerializer, CategorySerializer, MassUploadFileSerializer, MessageSerializer, MassUploadSerializer
+from .serializers import ItemSerializer, CategorySerializer, MassUploadFileSerializer, ItemListSerializer, MessageSerializer, MassUploadSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .permissions import IsSuperUser, IsOwner
@@ -22,7 +22,7 @@ class ItemListApiView(generics.GenericAPIView,
     filters are available
     '''
     queryset = Item.objects.all().order_by("-id")
-    serializer_class = ItemSerializer
+    serializer_class = ItemListSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category', 'name', 'sold',
                         'country', 'city', 'state', 'landmark']
@@ -63,18 +63,18 @@ class ItemCreateApiView(APIView):
     '''
 
     def post(self, request):
-        try:
+        # try:
+            data = request.data.copy()
             user = request.user
-            print(request.data)
-            request.data._mutable = True
-            serializers = ItemSerializer(data=request.data, partial=True)
-            serializers.initial_data["seller"] = user.pk
+            serializers = ItemSerializer(data=data, partial=True)
+
+            serializers.initial_data["seller"] = request.user.id
             if serializers.is_valid():
                 serializers.save()
                 return Response(serializers.data)
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-        except:
-            raise Http404
+        # except:
+            # raise Http404
 
 
 class ItemUpdateDeleteApiView(APIView):
