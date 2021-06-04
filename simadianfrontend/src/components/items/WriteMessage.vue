@@ -78,7 +78,7 @@
 
     watch: {
       '$store.state.message' (val) {
-        this.message += val;
+        this.message = val;
       },
     },
 
