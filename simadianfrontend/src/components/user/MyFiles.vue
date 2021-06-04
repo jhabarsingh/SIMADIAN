@@ -30,8 +30,16 @@
               <v-list-item-content>
 
                 <v-list-item-subtitle v-text="item.file"></v-list-item-subtitle>
-
+                
               </v-list-item-content>
+              
+               <v-list-item-action>
+                <v-list-item-action-text v-text="item.action"></v-list-item-action-text>
+
+                    <ShareMain :url="item.file" />
+
+                </v-list-item-action>
+
             </template>
           </v-list-item>
 
@@ -66,12 +74,14 @@
 
 <script>
 import axios from 'axios';
+import ShareMain from './ShareMain.vue';
 
 import MultipleFileUpload from './MultipleFileUpload.vue';
 
   export default {
     components: {
-        MultipleFileUpload
+        MultipleFileUpload,
+        ShareMain
     },
     data: () => ({
       selected: [2],
