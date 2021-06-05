@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div
+	v-if="hidden"
+  >
     <v-card class="text-center"
       style="margin: 0px auto 10px auto;padding:10px;display:flex;justify-content:center;"
       max-width="700px"
@@ -37,7 +39,8 @@ import axios from 'axios';
 export default {
   data: () => ({
     files: null,
-    show: false
+    show: false,
+    hidden: true
   }),
   methods: {
     getExtension(filename) {
@@ -84,6 +87,16 @@ export default {
 
       this.show = false;
     }
+  },
+
+  created () {
+	if(localStorage.getItem("access")) {
+	 	// Do Nothing
+	}
+	else {
+		this.hidden = false;
+        }
+
   }
 }
 </script>
